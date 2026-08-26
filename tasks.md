@@ -8,6 +8,7 @@
 - `frontend/`, `backend/`, `e2e/` directory structures
 - `package.json` files for frontend, backend, and e2e
 - `.gitignore` file
+
 **Acceptance Criteria:**
 - [ ] All directories from plan.md exist with correct naming
 - [ ] Package.json files contain basic metadata and scripts
@@ -23,6 +24,7 @@
 - `frontend/vite.config.ts`
 - `backend/prisma/schema.prisma`
 - `.env.example` files
+
 **Acceptance Criteria:**
 - [ ] TypeScript strict mode enabled in both projects
 - [ ] Vite configuration includes React and TypeScript plugins
@@ -38,6 +40,7 @@
 - `backend/prisma/schema.prisma` (complete)
 - `backend/src/config/database.ts`
 - `backend/prisma/migrations/001_initial_schema.sql`
+
 **Acceptance Criteria:**
 - [ ] Prisma schema matches plan.md data model exactly
 - [ ] Database connection uses environment variables
@@ -54,6 +57,7 @@
 - `backend/src/types/auth.ts`, `backend/src/types/category.ts`, `backend/src/types/transaction.ts`
 - `frontend/src/utils/validation.ts`, `frontend/src/utils/formatting.ts`
 - `backend/src/utils/validation.ts`, `backend/src/utils/constants.ts`
+
 **Acceptance Criteria:**
 - [ ] Type definitions match API contracts from spec.md
 - [ ] Validation utilities implement business rules
@@ -72,6 +76,7 @@
 - `backend/src/repositories/userRepository.ts`
 - `backend/src/schemas/authSchema.ts`
 - `backend/src/utils/encryption.ts`
+
 **Acceptance Criteria:**
 - [ ] Password hashing uses bcrypt with 12+ rounds
 - [ ] JWT tokens generated with 15min access, 7day refresh
@@ -88,6 +93,7 @@
 - `backend/src/routes/auth.ts`
 - `backend/src/middleware/auth.ts`
 - `backend/src/middleware/validation.ts`
+
 **Acceptance Criteria:**
 - [ ] POST /api/v1/auth/register creates user successfully
 - [ ] POST /api/v1/auth/login returns HttpOnly cookies
@@ -105,6 +111,7 @@
 - `frontend/src/pages/LoginPage/`
 - `frontend/src/pages/RegisterPage/`
 - `frontend/src/services/authService.ts`
+
 **Acceptance Criteria:**
 - [ ] Forms validate input before submission
 - [ ] Login form handles authentication errors
@@ -121,6 +128,7 @@
 - `frontend/src/components/auth/ProtectedRoute/`
 - `frontend/src/hooks/useAuth.ts`
 - `frontend/src/App.tsx` (routing setup)
+
 **Acceptance Criteria:**
 - [ ] AuthContext manages login state and tokens
 - [ ] ProtectedRoute redirects unauthenticated users
@@ -138,6 +146,7 @@
 - `backend/src/services/categoryService.ts`
 - `backend/src/repositories/categoryRepository.ts`
 - `backend/src/schemas/categorySchema.ts`
+
 **Acceptance Criteria:**
 - [ ] Category creation validates unique (user_id, name, type)
 - [ ] Category updates prevent duplicate names
@@ -152,6 +161,7 @@
 **Files Created/Modified:**
 - `backend/src/controllers/categoryController.ts`
 - `backend/src/routes/categories.ts`
+
 **Acceptance Criteria:**
 - [ ] GET /api/v1/categories returns user's categories
 - [ ] POST /api/v1/categories creates new category
@@ -169,6 +179,7 @@
 - `frontend/src/components/categories/CategoryCard/`
 - `frontend/src/pages/CategoriesPage/`
 - `frontend/src/services/categoryService.ts`
+
 **Acceptance Criteria:**
 - [ ] CategoryList displays all user categories
 - [ ] CategoryForm validates input and prevents duplicates
@@ -186,6 +197,7 @@
 - `backend/src/services/transactionService.ts`
 - `backend/src/repositories/transactionRepository.ts`
 - `backend/src/schemas/transactionSchema.ts`
+
 **Acceptance Criteria:**
 - [ ] Transaction creation validates amount > 0
 - [ ] Transaction type matches category type
@@ -200,6 +212,7 @@
 **Files Created/Modified:**
 - `backend/src/controllers/transactionController.ts`
 - `backend/src/routes/transactions.ts`
+
 **Acceptance Criteria:**
 - [ ] GET /api/v1/transactions supports filtering by type, category, date
 - [ ] POST /api/v1/transactions creates transaction with validation
@@ -217,6 +230,7 @@
 - `frontend/src/components/transactions/TransactionCard/`
 - `frontend/src/components/transactions/TransactionFilter/`
 - `frontend/src/pages/TransactionsPage/`
+
 **Acceptance Criteria:**
 - [ ] TransactionList displays paginated results
 - [ ] TransactionForm validates all inputs
@@ -234,6 +248,7 @@
 - `backend/src/services/dashboardService.ts`
 - `backend/src/controllers/dashboardController.ts`
 - `backend/src/routes/dashboard.ts`
+
 **Acceptance Criteria:**
 - [ ] Current balance calculated correctly (income - expenses)
 - [ ] Current month income calculated for calendar month
@@ -251,6 +266,7 @@
 - `frontend/src/components/dashboard/MonthlySummary/`
 - `frontend/src/pages/DashboardPage/`
 - `frontend/src/services/dashboardService.ts`
+
 **Acceptance Criteria:**
 - [ ] Dashboard displays current balance prominently
 - [ ] Monthly income and expenses shown clearly
@@ -268,6 +284,7 @@
 - `backend/src/services/expenseReportService.ts`
 - `backend/src/controllers/expenseReportController.ts`
 - `backend/src/routes/reports.ts`
+
 **Acceptance Criteria:**
 - [ ] Report groups expenses by category
 - [ ] Categories sorted by total amount (highest first)
@@ -284,6 +301,7 @@
 - `frontend/src/components/reports/CategoryChart/`
 - `frontend/src/pages/ReportsPage/`
 - `frontend/src/services/expenseReportService.ts`
+
 **Acceptance Criteria:**
 - [ ] Expense report shows categories with amounts
 - [ ] Categories displayed in descending order
@@ -302,6 +320,7 @@
 - `backend/src/middleware/logging.ts`
 - `backend/src/utils/logger.ts`
 - `frontend/src/utils/errorHandling.ts`
+
 **Acceptance Criteria:**
 - [ ] All API errors return standardized format
 - [ ] Errors logged with context but no sensitive data
@@ -318,6 +337,7 @@
 - `backend/src/middleware/rateLimit.ts`
 - `backend/src/app.ts` (middleware setup)
 - `frontend/src/services/api.ts` (security headers)
+
 **Acceptance Criteria:**
 - [ ] CORS configured with specific origins
 - [ ] Rate limiting implemented per user
@@ -333,6 +353,7 @@
 - Additional test files as needed
 - `backend/tests/setup.ts`
 - `frontend/src/setupTests.ts`
+
 **Acceptance Criteria:**
 - [ ] Backend unit tests achieve 80% coverage for business logic
 - [ ] Frontend utilities achieve 90% coverage
@@ -348,6 +369,7 @@
 - `backend/src/repositories/` (optimized queries)
 - `backend/src/middleware/cache.ts`
 - Database indexes if needed
+
 **Acceptance Criteria:**
 - [ ] Database queries use proper indexes
 - [ ] N+1 query problems eliminated
@@ -362,6 +384,7 @@
 **Files Created/Modified:**
 - Test fixes as needed
 - `docker-compose.yml` for test environment
+
 **Acceptance Criteria:**
 - [ ] All integration tests pass
 - [ ] All E2E tests pass
@@ -378,6 +401,7 @@
 - `docs/deployment/` directory
 - `.github/workflows/` CI/CD files
 - Environment configuration files
+
 **Acceptance Criteria:**
 - [ ] README includes complete setup instructions
 - [ ] Deployment guides cover frontend and backend
