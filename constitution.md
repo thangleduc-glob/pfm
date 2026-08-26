@@ -770,3 +770,95 @@ Examples:
 - Use dependency security monitoring tools
 - Subscribe to security advisories for used packages
 - Document security decisions and mitigations
+
+## Task Completion and Quality Gates
+
+### Mandatory Task Completion Process
+All AI agents and human developers MUST follow this process after completing each task from tasks.md:
+
+#### Step 1: Update Progress Tracking
+- Update `progress.md` with completed task details
+- Mark task as completed in `tasks.md` acceptance criteria
+- Log time spent and any notes
+
+#### Step 2: Run Quality Gates (Only if Applicable)
+After each task completion, run verification commands ONLY if the task involves code changes:
+
+**For tasks that ONLY create folders/files (e.g., T001):**
+- No quality gates needed
+- Just verify files/folders were created correctly
+
+**For tasks with code changes:**
+```bash
+# Type checking (if TypeScript files changed)
+npm run typecheck
+
+# Linting (if code files changed)
+npm run lint
+
+# Unit tests with coverage (if business logic added)
+npm run test:unit -- --coverage
+
+# Integration tests (if API endpoints added)
+npm run test:integration
+
+# E2E tests (if UI components added)
+npm run test:e2e
+
+# Build verification (if frontend code changed)
+npm run build
+```
+
+**Quality Gate Decision Tree:**
+- Created folders only? → Skip quality gates
+- Added configuration files? → Run typecheck only
+- Added business logic? → Run typecheck + lint + unit tests
+- Added API endpoints? → Run typecheck + lint + unit + integration tests
+- Added UI components? → Run typecheck + lint + unit + build
+- Added user flows? → Run all applicable tests including E2E
+
+#### Step 3: Quality Gate Failure Handling
+If any quality gate fails:
+1. **First Failure**: Fix issues immediately and re-run all quality gates
+2. **Second Failure**: Attempt alternative fixes and re-run all quality gates
+3. **Third Failure**: **STOP WORK** and involve human developer for assistance
+
+#### Step 4: Documentation Updates
+- Update `progress.md` Task Log with completion details
+- Note any quality gate failures and resolutions
+- Record time spent on fixes and re-verification
+
+### Quality Gate Requirements
+
+#### Backend Tasks
+- TypeScript compilation: No errors
+- ESLint: No warnings or errors
+- Unit tests: Minimum 80% coverage for business logic
+- Integration tests: 100% pass rate
+- Security tests: All protections verified
+
+#### Frontend Tasks
+- TypeScript compilation: No errors
+- ESLint: No warnings or errors
+- Unit tests: Minimum 90% coverage for utilities
+- Build: Successful production build
+- Accessibility tests: No critical violations
+
+#### E2E Tasks
+- Playwright tests: 100% pass rate
+- Performance tests: Response times under 200ms
+- Cross-browser tests: All target browsers pass
+
+### Human Involvement Triggers
+Human developer MUST be involved when:
+- Quality gate fails 3 times consecutively
+- Security vulnerabilities are detected
+- Performance requirements cannot be met
+- Architecture decisions need clarification
+- External dependencies cause conflicts
+
+### Enforcement Mechanisms
+- Pre-commit hooks must prevent commits with failing quality gates
+- CI/CD pipeline must fail builds on quality gate failures
+- Progress tracking must be updated before starting next task
+- All quality gate runs must be logged in progress.md
