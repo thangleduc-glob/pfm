@@ -131,11 +131,12 @@
 - `frontend/src/services/authService.ts`
 
 **Acceptance Criteria:**
-- [ ] Forms validate input before submission
-- [ ] Login form handles authentication errors
-- [ ] Registration form validates username uniqueness
-- [ ] Forms use React Hook Form with validation
-- [ ] Components have unit tests for validation logic
+- [x] Forms validate input before submission
+- [x] Login form handles authentication errors
+- [x] Registration form validates username uniqueness
+- [x] Forms use React Hook Form with validation
+- [x] Components have unit tests for validation logic
+**Status:** COMPLETED ✓
 **Time Estimate:** 45 minutes
 **Dependencies:** T006
 
