@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": ["jest", "node"],
+    "rootDir": ".",
+    "outDir": "./dist-test",
+    "moduleResolution": "node10",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "typeRoots": ["./node_modules/@types", "./types"]
+  },
+  "include": ["src/**/*", "tests/**/*", "types/**/*", "prisma/schema.prisma"],
+  "exclude": ["node_modules", "dist", "dist-test"]
+}
