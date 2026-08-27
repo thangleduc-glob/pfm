@@ -3,7 +3,8 @@
     "target": "ES2022",
     "lib": ["ES2022"],
     "module": "CommonJS",
-    "moduleResolution": "node",
+    "moduleResolution": "node10",
+    "ignoreDeprecations": "6.0",
     "rootDir": "./src",
     "outDir": "./dist",
     "strict": true,
@@ -27,8 +28,6 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    
-    /* Path mapping */
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
@@ -43,15 +42,6 @@
       "@/config/*": ["src/config/*"]
     }
   },
-  "include": [
-    "src/**/*",
-    "prisma/schema.prisma"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "tests",
-    "**/*.test.ts",
-    "**/*.spec.ts"
-  ]
+  "include": ["src/**/*", "prisma/schema.prisma"],
+  "exclude": ["node_modules", "dist", "tests", "**/*.test.ts", "**/*.spec.ts"]
 }
