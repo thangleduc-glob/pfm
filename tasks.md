@@ -145,15 +145,15 @@
 **Files Created/Modified:**
 - `frontend/src/context/AuthContext.tsx`
 - `frontend/src/components/auth/ProtectedRoute/`
-- `frontend/src/hooks/useAuth.ts`
+- `frontend/src/services/authService.ts`
 - `frontend/src/App.tsx` (routing setup)
 
 **Acceptance Criteria:**
-- [ ] AuthContext manages login state and tokens
-- [ ] ProtectedRoute redirects unauthenticated users
-- [ ] useAuth hook provides auth state and actions
-- [ ] App routing includes public and protected routes
-- [ ] E2E tests verify authentication flow
+- [x] AuthContext manages login state and tokens
+- [x] ProtectedRoute redirects unauthenticated users
+- [x] authService.ts provides authentication network service
+- [x] App routing includes public and protected routes
+- [x] E2E tests verify authentication flow
 **Time Estimate:** 30 minutes
 **Dependencies:** T007
 
