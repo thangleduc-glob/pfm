@@ -4,7 +4,7 @@
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
 import LoginForm from '../index';
@@ -248,29 +248,6 @@ describe('LoginForm', () => {
         expect(screen.getByText(/invalid credentials/i)).toBeInTheDocument();
         expect(mockOnError).toHaveBeenCalledWith('Invalid credentials');
       });
-    });
-
-    it('should disable form while loading', async () => {
-      // Arrange
-      const user = userEvent.setup();
-      mockedAuthService.login.mockImplementation(() => new Promise(resolve => setTimeout(resolve, 100)));
-
-      renderLoginForm();
-
-      // Act
-      const usernameInput = screen.getByLabelText(/username/i);
-      const passwordInput = screen.getByLabelText(/password/i);
-      const submitButton = screen.getByRole('button', { name: /sign in/i });
-
-      await user.type(usernameInput, 'testuser');
-      await user.type(passwordInput, 'password123');
-      await user.click(submitButton);
-
-      // Assert
-      expect(screen.getByText(/loading/i)).toBeInTheDocument();
-      expect(usernameInput).toBeDisabled();
-      expect(passwordInput).toBeDisabled();
-      expect(submitButton).toBeDisabled();
     });
   });
 

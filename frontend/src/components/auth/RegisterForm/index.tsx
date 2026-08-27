@@ -5,10 +5,8 @@
 
 import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Link } from 'react-router-dom';
 import { RegisterRequest } from '../../../types/auth';
 import AuthService from '../../../services/authService';
-import Button from '../../common/Button';
 
 interface RegisterFormProps {
   onSuccess?: () => void;
@@ -27,6 +25,8 @@ interface FormInputs {
  */
 const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess, onError }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   
   const {
     register,
@@ -73,9 +73,10 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess, onError }) => {
         onSuccess();
       }
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Registration failed';
+      // Always show "Registration failed" for any registration error
+      const errorMessage = 'Registration failed';
       
-      // Set form error for username field to show general error
+      // Set form error to show the error message
       setError('root', { message: errorMessage });
       
       // Call error callback if provided
@@ -129,28 +130,49 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess, onError }) => {
           <label htmlFor="password" className="form-label">
             Password
           </label>
-          <input
-            {...register('password', {
-              required: 'Password is required',
-              minLength: {
-                value: 8,
-                message: 'Password must be at least 8 characters',
-              },
-              pattern: {
-                value: /^(?=.*[a-zA-Z])(?=.*\d)/,
-                message: 'Password must contain at least one letter and one number',
-              },
-            })}
-            type="password"
-            id="password"
-            className={`form-input ${errors.password ? 'error' : ''}`}
-            placeholder="Create a password"
-            disabled={isLoading}
-            autoComplete="new-password"
-            aria-describedby={errors.password ? 'password-error' : undefined}
-          />
+          <div className="password-input-wrapper">
+            <input
+              {...register('password', {
+                required: 'Password is required',
+                minLength: {
+                  value: 8,
+                  message: 'Password must be at least 8 characters',
+                },
+                pattern: {
+                  value: /^(?=.*[a-zA-Z])(?=.*\d)/,
+                  message: 'Password must contain at least one letter and one number',
+                },
+              })}
+              type={showPassword ? 'text' : 'password'}
+              id="password"
+              className={`form-input ${errors.password ? 'error' : ''}`}
+              placeholder="Create a password"
+              disabled={isLoading}
+              autoComplete="new-password"
+              aria-describedby={errors.password ? 'password-error' : undefined}
+            />
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={() => setShowPassword(!showPassword)}
+              aria-label={showPassword ? 'Hide password' : 'Show password'}
+              disabled={isLoading}
+            >
+              {showPassword ? (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24" />
+                  <line x1="1" y1="1" x2="23" y2="23" />
+                </svg>
+              ) : (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              )}
+            </button>
+          </div>
           {errors.password && (
-            <div id="password-error" className="error-message" role="alert">
+            <div id="password-error" className="form-error" role="alert">
               {errors.password.message}
             </div>
           )}
@@ -160,21 +182,42 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess, onError }) => {
           <label htmlFor="confirmPassword" className="form-label">
             Confirm Password
           </label>
-          <input
-            {...register('confirmPassword', {
-              required: 'Please confirm your password',
-              validate: (value) => value === password || 'Passwords do not match',
-            })}
-            type="password"
-            id="confirmPassword"
-            className={`form-input ${errors.confirmPassword ? 'error' : ''}`}
-            placeholder="Confirm your password"
-            disabled={isLoading}
-            autoComplete="new-password"
-            aria-describedby={errors.confirmPassword ? 'confirmPassword-error' : undefined}
-          />
+          <div className="password-input-wrapper">
+            <input
+              {...register('confirmPassword', {
+                required: 'Please confirm your password',
+                validate: (value) => value === password || 'Passwords do not match',
+              })}
+              type={showConfirmPassword ? 'text' : 'password'}
+              id="confirmPassword"
+              className={`form-input ${errors.confirmPassword ? 'error' : ''}`}
+              placeholder="Confirm your password"
+              disabled={isLoading}
+              autoComplete="new-password"
+              aria-describedby={errors.confirmPassword ? 'confirmPassword-error' : undefined}
+            />
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
+              disabled={isLoading}
+            >
+              {showConfirmPassword ? (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24" />
+                  <line x1="1" y1="1" x2="23" y2="23" />
+                </svg>
+              ) : (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              )}
+            </button>
+          </div>
           {errors.confirmPassword && (
-            <div id="confirmPassword-error" className="error-message" role="alert">
+            <div id="confirmPassword-error" className="form-error" role="alert">
               {errors.confirmPassword.message}
             </div>
           )}
@@ -186,25 +229,20 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess, onError }) => {
           </div>
         )}
 
-        <Button
+        <button
           type="submit"
-          variant="primary"
-          size="large"
-          isLoading={isLoading}
+          className="btn btn-primary btn-block"
           disabled={isLoading}
-          className="w-full"
         >
-          {isLoading ? 'Creating account...' : 'Create Account'}
-        </Button>
-
-        <div className="form-footer">
-          <p>
-            Already have an account?{' '}
-            <Link to="/login" className="link">
-              Sign in
-            </Link>
-          </p>
-        </div>
+          {isLoading ? (
+            <>
+              <span className="spinner"></span>
+              Creating account...
+            </>
+          ) : (
+            'Create Account'
+          )}
+        </button>
       </form>
     </div>
   );
