@@ -1,0 +1,16 @@
+{
+  "name": "pfm-e2e",
+  "version": "1.0.0",
+  "description": "Personal Finance Manager - E2E Tests",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:ui": "playwright test --ui",
+    "test:report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.37.0",
+    "@types/node": "^20.5.0"
+  }
+}
