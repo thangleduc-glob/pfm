@@ -67,11 +67,12 @@
 - `backend/src/utils/validation.ts`, `backend/src/utils/constants.ts`
 
 **Acceptance Criteria:**
-- [ ] Type definitions match API contracts from spec.md
-- [ ] Validation utilities implement business rules
-- [ ] Formatting utilities handle currency and dates
-- [ ] Types are consistent between frontend and backend
-- [ ] All utilities have corresponding unit tests
+- [x] Type definitions match API contracts from spec.md
+- [x] Validation utilities implement business rules
+- [x] Formatting utilities handle currency and dates
+- [x] Types are consistent between frontend and backend
+- [x] All utilities have corresponding unit tests
+**Status:** COMPLETED ✓
 **Time Estimate:** 45 minutes
 **Dependencies:** T003
 
