@@ -107,13 +107,17 @@
 - `backend/src/routes/auth.ts`
 - `backend/src/middleware/auth.ts`
 - `backend/src/middleware/validation.ts`
+- `backend/tests/integration/auth.test.ts`
+- `backend/tests/helpers/testApp.ts`
+- `backend/tests/helpers/testData.ts`
 
 **Acceptance Criteria:**
-- [ ] POST /api/v1/auth/register creates user successfully
-- [ ] POST /api/v1/auth/login returns HttpOnly cookies
-- [ ] POST /api/v1/auth/logout clears cookies
-- [ ] All endpoints use Zod validation
-- [ ] Integration tests cover all authentication flows
+- [x] POST /api/v1/auth/register creates user successfully
+- [x] POST /api/v1/auth/login returns HttpOnly cookies
+- [x] POST /api/v1/auth/logout clears cookies
+- [x] All endpoints use Zod validation
+- [x] Integration tests cover all authentication flows
+**Status:** COMPLETED ✓
 **Time Estimate:** 30 minutes
 **Dependencies:** T005
 
