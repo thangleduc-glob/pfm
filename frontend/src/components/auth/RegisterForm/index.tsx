@@ -244,6 +244,12 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess, onError }) => {
           )}
         </button>
       </form>
+      <div className="form-footer">
+        <span>Already have an account? </span>
+        <a href="/login" className="link">
+          Sign in
+        </a>
+      </div>
     </div>
   );
 };

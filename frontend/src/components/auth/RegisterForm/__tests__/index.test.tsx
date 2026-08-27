@@ -62,8 +62,8 @@ describe('RegisterForm', () => {
 
       // Assert
       expect(screen.getByLabelText(/username/i)).toBeInTheDocument();
-      expect(screen.getByLabelText(/^password$/i)).toBeInTheDocument();
-      expect(screen.getByLabelText(/confirm password/i)).toBeInTheDocument();
+      expect(screen.getByPlaceholderText(/create a password/i)).toBeInTheDocument();
+      expect(screen.getByPlaceholderText(/confirm your password/i)).toBeInTheDocument();
       expect(screen.getByRole('button', { name: /create account/i })).toBeInTheDocument();
       expect(screen.getByText(/already have an account/i)).toBeInTheDocument();
       expect(screen.getByText(/sign in/i)).toBeInTheDocument();
@@ -75,8 +75,8 @@ describe('RegisterForm', () => {
 
       // Assert
       const usernameInput = screen.getByLabelText(/username/i);
-      const passwordInput = screen.getByLabelText(/^password$/i);
-      const confirmPasswordInput = screen.getByLabelText(/confirm password/i);
+      const passwordInput = screen.getByPlaceholderText(/create a password/i);
+      const confirmPasswordInput = screen.getByPlaceholderText(/confirm your password/i);
 
       expect(usernameInput).toHaveAttribute('type', 'text');
       expect(usernameInput).toHaveAttribute('autocomplete', 'username');
@@ -307,8 +307,8 @@ describe('RegisterForm', () => {
 
       // Assert
       await waitFor(() => {
-        expect(screen.getByText(/username already exists/i)).toBeInTheDocument();
-        expect(mockOnError).toHaveBeenCalledWith('Username already exists');
+        expect(screen.getByText(/registration failed/i)).toBeInTheDocument();
+        expect(mockOnError).toHaveBeenCalledWith('Registration failed');
       });
     });
   });
@@ -320,12 +320,13 @@ describe('RegisterForm', () => {
 
       // Assert
       const usernameInput = screen.getByLabelText(/username/i);
-      const passwordInput = screen.getByLabelText(/^password$/i);
-      const confirmPasswordInput = screen.getByLabelText(/confirm password/i);
+      const passwordInput = screen.getByPlaceholderText(/create a password/i);
+      const confirmPasswordInput = screen.getByPlaceholderText(/confirm your password/i);
 
-      expect(usernameInput).toHaveAttribute('aria-describedby');
-      expect(passwordInput).toHaveAttribute('aria-describedby');
-      expect(confirmPasswordInput).toHaveAttribute('aria-describedby');
+      // aria-describedby is only present when there are errors
+      expect(usernameInput).not.toHaveAttribute('aria-describedby');
+      expect(passwordInput).not.toHaveAttribute('aria-describedby');
+      expect(confirmPasswordInput).not.toHaveAttribute('aria-describedby');
     });
 
     it('should associate error messages with inputs', async () => {

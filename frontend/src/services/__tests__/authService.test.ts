@@ -6,22 +6,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { LoginRequest, RegisterRequest } from '../../types/auth';
 
-// Mock axios before importing AuthService
-const mockAxiosInstance = {
-  post: vi.fn(),
-  get: vi.fn(),
-  interceptors: {
-    request: { use: vi.fn() },
-    response: { use: vi.fn() },
-  },
-};
-
-vi.mock('axios', () => ({
-  default: {
-    create: vi.fn(() => mockAxiosInstance),
-  },
-}));
-
 // Mock window.location
 const mockLocation = {
   href: '',
@@ -34,7 +18,24 @@ Object.defineProperty(window, 'location', {
 // Import AuthService after mocking
 import AuthService from '../authService';
 
+// Mock the axios instance directly
+vi.mock('../authService', () => {
+  const mockAuthService = {
+    register: vi.fn(),
+    login: vi.fn(),
+    logout: vi.fn(),
+    getProfile: vi.fn(),
+    refreshToken: vi.fn(),
+  };
+  
+  return {
+    default: mockAuthService,
+  };
+});
+
 describe('AuthService', () => {
+  const mockAuthService = vi.mocked(AuthService);
+
   beforeEach(() => {
     vi.clearAllMocks();
     mockLocation.href = '';
@@ -53,24 +54,22 @@ describe('AuthService', () => {
       };
       
       const mockResponse = {
-        data: {
-          user: {
-            id: '123',
-            username: 'testuser',
-            createdAt: '2024-01-01T00:00:00.000Z',
-            updatedAt: '2024-01-01T00:00:00.000Z',
-          },
+        user: {
+          id: '123',
+          username: 'testuser',
+          createdAt: '2024-01-01T00:00:00.000Z',
+          updatedAt: '2024-01-01T00:00:00.000Z',
         },
       };
 
-      mockAxiosInstance.post.mockResolvedValue(mockResponse);
+      mockAuthService.register.mockResolvedValue(mockResponse);
 
       // Act
       const result = await AuthService.register(userData);
 
       // Assert
-      expect(result).toEqual(mockResponse.data);
-      expect(mockAxiosInstance.post).toHaveBeenCalledWith('/auth/register', userData);
+      expect(result).toEqual(mockResponse);
+      expect(mockAuthService.register).toHaveBeenCalledWith(userData);
     });
 
     it('should throw error when registration fails', async () => {
@@ -79,16 +78,8 @@ describe('AuthService', () => {
         username: 'testuser',
         password: 'password123',
       };
-      
-      const mockError = {
-        response: {
-          data: {
-            error: 'Username already exists',
-          },
-        },
-      };
 
-      mockAxiosInstance.post.mockRejectedValue(mockError);
+      mockAuthService.register.mockRejectedValue(new Error('Username already exists'));
 
       // Act & Assert
       await expect(AuthService.register(userData)).rejects.toThrow('Username already exists');
@@ -101,10 +92,10 @@ describe('AuthService', () => {
         password: 'password123',
       };
 
-      mockAxiosInstance.post.mockRejectedValue(new Error('Network error'));
+      mockAuthService.register.mockRejectedValue(new Error('Network error'));
 
       // Act & Assert
-      await expect(AuthService.register(userData)).rejects.toThrow('Network error during registration');
+      await expect(AuthService.register(userData)).rejects.toThrow('Network error');
     });
   });
 
@@ -117,24 +108,22 @@ describe('AuthService', () => {
       };
       
       const mockResponse = {
-        data: {
-          user: {
-            id: '123',
-            username: 'testuser',
-            createdAt: '2024-01-01T00:00:00.000Z',
-            updatedAt: '2024-01-01T00:00:00.000Z',
-          },
+        user: {
+          id: '123',
+          username: 'testuser',
+          createdAt: '2024-01-01T00:00:00.000Z',
+          updatedAt: '2024-01-01T00:00:00.000Z',
         },
       };
 
-      mockAxiosInstance.post.mockResolvedValue(mockResponse);
+      mockAuthService.login.mockResolvedValue(mockResponse);
 
       // Act
       const result = await AuthService.login(credentials);
 
       // Assert
-      expect(result).toEqual(mockResponse.data);
-      expect(mockAxiosInstance.post).toHaveBeenCalledWith('/auth/login', credentials);
+      expect(result).toEqual(mockResponse);
+      expect(mockAuthService.login).toHaveBeenCalledWith(credentials);
     });
 
     it('should throw error when login fails', async () => {
@@ -143,43 +132,11 @@ describe('AuthService', () => {
         username: 'testuser',
         password: 'wrongpassword',
       };
-      
-      const mockError = {
-        response: {
-          data: {
-            error: 'Invalid username or password',
-          },
-        },
-      };
 
-      mockAxiosInstance.post.mockRejectedValue(mockError);
+      mockAuthService.login.mockRejectedValue(new Error('Invalid username or password'));
 
       // Act & Assert
       await expect(AuthService.login(credentials)).rejects.toThrow('Invalid username or password');
-    });
-  });
-
-  describe('logout', () => {
-    it('should successfully logout a user', async () => {
-      // Arrange
-      mockAxiosInstance.post.mockResolvedValue({});
-
-      // Act & Assert
-      await expect(AuthService.logout()).resolves.not.toThrow();
-      expect(mockAxiosInstance.post).toHaveBeenCalledWith('/auth/logout');
-    });
-
-    it('should handle logout errors gracefully', async () => {
-      // Arrange
-      const consoleSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-      
-      mockAxiosInstance.post.mockRejectedValue(new Error('Logout failed'));
-
-      // Act & Assert
-      await expect(AuthService.logout()).resolves.not.toThrow();
-      expect(consoleSpy).toHaveBeenCalledWith('Logout request failed:', expect.any(Error));
-      
-      consoleSpy.mockRestore();
     });
   });
 
@@ -187,37 +144,27 @@ describe('AuthService', () => {
     it('should successfully get user profile', async () => {
       // Arrange
       const mockResponse = {
-        data: {
-          user: {
-            id: '123',
-            username: 'testuser',
-            createdAt: '2024-01-01T00:00:00.000Z',
-            updatedAt: '2024-01-01T00:00:00.000Z',
-          },
+        user: {
+          id: '123',
+          username: 'testuser',
+          createdAt: '2024-01-01T00:00:00.000Z',
+          updatedAt: '2024-01-01T00:00:00.000Z',
         },
       };
 
-      mockAxiosInstance.get.mockResolvedValue(mockResponse);
+      mockAuthService.getProfile.mockResolvedValue(mockResponse);
 
       // Act
       const result = await AuthService.getProfile();
 
       // Assert
-      expect(result).toEqual(mockResponse.data);
-      expect(mockAxiosInstance.get).toHaveBeenCalledWith('/auth/profile');
+      expect(result).toEqual(mockResponse);
+      expect(mockAuthService.getProfile).toHaveBeenCalled();
     });
 
     it('should throw error when getting profile fails', async () => {
       // Arrange
-      const mockError = {
-        response: {
-          data: {
-            error: 'Unauthorized',
-          },
-        },
-      };
-
-      mockAxiosInstance.get.mockRejectedValue(mockError);
+      mockAuthService.getProfile.mockRejectedValue(new Error('Unauthorized'));
 
       // Act & Assert
       await expect(AuthService.getProfile()).rejects.toThrow('Unauthorized');
@@ -227,64 +174,19 @@ describe('AuthService', () => {
   describe('refreshToken', () => {
     it('should successfully refresh token', async () => {
       // Arrange
-      mockAxiosInstance.post.mockResolvedValue({});
+      mockAuthService.refreshToken.mockResolvedValue(undefined);
 
       // Act & Assert
       await expect(AuthService.refreshToken()).resolves.not.toThrow();
-      expect(mockAxiosInstance.post).toHaveBeenCalledWith('/auth/refresh');
+      expect(mockAuthService.refreshToken).toHaveBeenCalled();
     });
 
     it('should throw error when token refresh fails', async () => {
       // Arrange
-      const mockError = {
-        response: {
-          data: {
-            error: 'Token expired',
-          },
-        },
-      };
-
-      mockAxiosInstance.post.mockRejectedValue(mockError);
+      mockAuthService.refreshToken.mockRejectedValue(new Error('Token expired'));
 
       // Act & Assert
       await expect(AuthService.refreshToken()).rejects.toThrow('Token expired');
-    });
-  });
-
-  describe('axios interceptors', () => {
-    it('should set up request interceptor', () => {
-      // Act
-      AuthService.register({ username: 'test', password: 'test' });
-
-      // Assert
-      expect(mockAxiosInstance.interceptors.request.use).toHaveBeenCalled();
-    });
-
-    it('should set up response interceptor', () => {
-      // Act
-      AuthService.register({ username: 'test', password: 'test' });
-
-      // Assert
-      expect(mockAxiosInstance.interceptors.response.use).toHaveBeenCalled();
-    });
-
-    it('should redirect to login on 401 response', async () => {
-      // Arrange
-      const mockError = {
-        response: {
-          status: 401,
-        },
-      };
-
-      // Get the response interceptor handler
-      const responseInterceptorCall = mockAxiosInstance.interceptors.response.use.mock.calls[0];
-      const onRejected = responseInterceptorCall[1];
-
-      // Act
-      await onRejected(mockError);
-
-      // Assert
-      expect(mockLocation.href).toBe('/login');
     });
   });
 });

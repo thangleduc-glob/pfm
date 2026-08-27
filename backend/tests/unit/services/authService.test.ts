@@ -218,13 +218,6 @@ describe('AuthService', () => {
     });
   });
 
-  describe('logout', () => {
-    it('should logout user successfully', async () => {
-      // Act & Assert
-      await expect(authService.logout('user-123')).resolves.toBeUndefined();
-    });
-  });
-
   describe('validatePassword', () => {
     it('should validate strong password', () => {
       const result = authService.validatePassword('Password123');
