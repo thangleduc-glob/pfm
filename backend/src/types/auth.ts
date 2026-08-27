@@ -6,7 +6,7 @@
 import { User } from '@prisma/client';
 
 /** User data without sensitive information */
-export type SafeUser = Omit<User, 'password'>;
+export type SafeUser = Omit<User, 'passwordHash'>;
 
 /** Login request payload */
 export interface LoginRequest {

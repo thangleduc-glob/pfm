@@ -85,13 +85,18 @@
 - `backend/src/repositories/userRepository.ts`
 - `backend/src/schemas/authSchema.ts`
 - `backend/src/utils/encryption.ts`
+- `backend/tests/unit/utils/encryption.test.ts`
+- `backend/tests/unit/repositories/userRepository.test.ts`
+- `backend/tests/unit/schemas/authSchema.test.ts`
+- `backend/tests/unit/services/authService.test.ts`
 
 **Acceptance Criteria:**
-- [ ] Password hashing uses bcrypt with 12+ rounds
-- [ ] JWT tokens generated with 15min access, 7day refresh
-- [ ] User registration validates username uniqueness
-- [ ] Password validation requires 8+ chars, 1 letter, 1 number
-- [ ] All functions have unit tests with 80% coverage
+- [x] Password hashing uses bcrypt with 12+ rounds
+- [x] JWT tokens generated with 15min access, 7day refresh
+- [x] User registration validates username uniqueness
+- [x] Password validation requires 8+ chars, 1 letter, 1 number
+- [x] All functions have unit tests with 80% coverage
+**Status:** COMPLETED ✓
 **Time Estimate:** 45 minutes
 **Dependencies:** T004
 
