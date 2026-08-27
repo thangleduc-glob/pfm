@@ -97,6 +97,8 @@ export const authErrorResponseSchema = z.object({
     'TOKEN_INVALID',
     'VALIDATION_ERROR',
     'INTERNAL_ERROR',
+    'AUTH_REQUIRED',
+    'FORBIDDEN',
   ]),
 });
 
