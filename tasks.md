@@ -228,13 +228,15 @@
 - `backend/src/schemas/transactionSchema.ts`
 
 **Acceptance Criteria:**
-- [ ] Transaction creation validates amount > 0
-- [ ] Transaction type matches category type
-- [ ] Transaction date cannot be future
-- [ ] All operations enforce user ownership
-- [ ] Service includes balance calculation methods
+- [x] Transaction creation validates amount > 0
+- [x] Transaction type matches category type
+- [x] Transaction date cannot be future
+- [x] All operations enforce user ownership
+- [x] Service includes balance calculation methods
 **Time Estimate:** 45 minutes
 **Dependencies:** T011
+**Status:** COMPLETED ✓
+**Date Completed:** 2026-08-28
 
 ### T013: Implement Transaction API Endpoints
 **Description:** Create Express controllers and routes for transaction CRUD operations with filtering.
