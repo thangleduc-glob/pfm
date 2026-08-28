@@ -1,9 +1,9 @@
 # Implementation Progress
 
 ## Summary
-- **Tasks Completed:** 11 / 24
-- **Current Task:** T012 - Implement Frontend Transaction Components
-- **Time Spent:** 9h 30m
+- **Tasks Completed:** 12 / 24
+- **Current Task:** T013 - Implement Transaction API Endpoints
+- **Time Spent:** 10h 15m
 
 ## Task Log
 
@@ -247,6 +247,27 @@
 - frontend/src/services/__tests__/categoryService.test.ts
 - Updated frontend/src/App.tsx
 - Updated frontend/src/types/category.ts
+
+### T012: Implement Backend Transaction Service - COMPLETED ✓
+**Date:** 2026-08-28
+**Time Spent:** 45 minutes
+**Status:** Success
+**Notes:**
+- Created TransactionRepository with full CRUD operations using Prisma
+- Implemented TransactionService with business logic and validation rules
+- Created comprehensive Zod schemas for request/response validation
+- Transaction creation validates amount > 0, date not in future, and category type match
+- All operations enforce user ownership and prevent unauthorized access
+- Service includes balance calculation methods and monthly summaries
+- Unit tests created with 88 tests passing for all layers
+- All acceptance criteria met successfully
+**Files Created:**
+- backend/src/services/transactionService.ts
+- backend/src/repositories/transactionRepository.ts
+- backend/src/schemas/transactionSchema.ts
+- backend/tests/unit/services/transactionService.test.ts
+- backend/tests/unit/repositories/transactionRepository.test.ts
+- backend/tests/unit/schemas/transactionSchema.test.ts
 
 ## Rejection Log
 [Will be populated if tasks rejected]
