@@ -47,3 +47,10 @@ export interface CategorySummary {
   totalAmount: number;
   transactionCount: number;
 }
+
+/** API error response */
+export interface ApiError {
+  error: string;
+  message?: string;
+  details?: any;
+}
