@@ -184,13 +184,17 @@
 **Files Created/Modified:**
 - `backend/src/controllers/categoryController.ts`
 - `backend/src/routes/categories.ts`
+- `backend/tests/integration/category.test.ts`
+- `backend/tests/helpers/testApp.ts`
+- `backend/tests/setup.ts`
 
 **Acceptance Criteria:**
-- [ ] GET /api/v1/categories returns user's categories
-- [ ] POST /api/v1/categories creates new category
-- [ ] PUT /api/v1/categories/:id updates category
-- [ ] DELETE /api/v1/categories/:id deletes category
-- [ ] Integration tests cover all CRUD operations
+- [x] GET /api/v1/categories returns user's categories
+- [x] POST /api/v1/categories creates new category
+- [x] PUT /api/v1/categories/:id updates category
+- [x] DELETE /api/v1/categories/:id deletes category
+- [x] Integration tests cover all CRUD operations
+**Status:** COMPLETED ✓
 **Time Estimate:** 30 minutes
 **Dependencies:** T009
 
@@ -437,10 +441,12 @@
 ## Task Summary
 
 - **Total Tasks:** 24
-- **Setup Phase:** 4 tasks (T001-T004)
-- **Core Features Phase:** 14 tasks (T005-T018)
-- **Polish Phase:** 6 tasks (T019-T024)
+- **Completed Tasks:** 10 / 24
+- **Setup Phase:** 4 tasks (T001-T004) - COMPLETED ✓
+- **Core Features Phase:** 6 / 14 tasks completed (T005-T010)
+- **Polish Phase:** 0 / 6 tasks completed (T019-T024)
 - **Estimated Total Time:** 15-18 hours
+- **Actual Time Spent:** 8h 30m
 
 ## Implementation Notes
 
