@@ -103,7 +103,7 @@ describe('Schema validation', () => {
 
   describe('createCategorySchema', () => {
     it('should validate category creation', () => {
-      expect(() => createCategorySchema.parse({ name: 'Food', type: 'expense' })).not.toThrow();
+      expect(() => createCategorySchema.parse({ name: 'Food', type: 'EXPENSE' })).not.toThrow();
     });
 
     it('should reject invalid category data', () => {
@@ -117,7 +117,7 @@ describe('Schema validation', () => {
         amount: '100',
         categoryId: 'cat1',
         date: '2024-01-15',
-        type: 'expense',
+        type: 'EXPENSE',
         note: 'Test note'
       };
       expect(() => createTransactionSchema.parse(data)).not.toThrow();
@@ -128,7 +128,7 @@ describe('Schema validation', () => {
         amount: '100.50',
         categoryId: 'cat1',
         date: '2024-01-15',
-        type: 'expense'
+        type: 'EXPENSE'
       };
       const result = createTransactionSchema.parse(data);
       expect(result.amount).toBe(100.50);
@@ -147,7 +147,7 @@ describe('Schema validation', () => {
 
   describe('transactionFilterSchema', () => {
     it('should validate filter with defaults', () => {
-      const data = { type: 'expense' };
+      const data = { type: 'EXPENSE' };
       const result = transactionFilterSchema.parse(data);
       expect(result.page).toBe(1);
       expect(result.limit).toBe(20);
@@ -194,13 +194,13 @@ describe('Utility functions', () => {
 
   describe('validateCategoryTypeMatch', () => {
     it('should validate matching types', () => {
-      expect(() => validateCategoryTypeMatch('income', 'income')).not.toThrow();
-      expect(() => validateCategoryTypeMatch('expense', 'expense')).not.toThrow();
+      expect(() => validateCategoryTypeMatch('INCOME', 'INCOME')).not.toThrow();
+      expect(() => validateCategoryTypeMatch('EXPENSE', 'EXPENSE')).not.toThrow();
     });
 
     it('should reject mismatched types', () => {
-      expect(() => validateCategoryTypeMatch('income', 'expense')).toThrow('Category type must match transaction type');
-      expect(() => validateCategoryTypeMatch('expense', 'income')).toThrow('Category type must match transaction type');
+      expect(() => validateCategoryTypeMatch('INCOME', 'EXPENSE')).toThrow('Category type must match transaction type');
+      expect(() => validateCategoryTypeMatch('EXPENSE', 'INCOME')).toThrow('Category type must match transaction type');
     });
   });
 

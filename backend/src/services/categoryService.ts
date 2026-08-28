@@ -3,10 +3,10 @@
  * Handles category operations with business rule enforcement
  */
 
-import { 
-  ICategoryService, 
+import {
+  ICategoryService,
   ICategoryRepository,
-  CreateCategoryRequest, 
+  CreateCategoryRequest,
   UpdateCategoryRequest
 } from '../types/category';
 import { Category } from '@prisma/client';
@@ -33,8 +33,8 @@ export class CategoryService implements ICategoryService {
   async create(userId: string, data: CreateCategoryRequest): Promise<Category> {
     // Validate that category name is unique for the user and type
     const existingCategory = await this.repository.findByNameAndType(
-      userId, 
-      data.name, 
+      userId,
+      data.name,
       data.type
     );
 
@@ -83,10 +83,10 @@ export class CategoryService implements ICategoryService {
       return null;
     }
 
-    logger.debug('Category lookup by ID', { 
-      id, 
-      userId, 
-      found: !!category 
+    logger.debug('Category lookup by ID', {
+      id,
+      userId,
+      found: !!category
     });
 
     return category;
@@ -117,8 +117,8 @@ export class CategoryService implements ICategoryService {
    * @throws Error if category not found, not owned by user, or name already exists
    */
   async update(
-    id: string, 
-    userId: string, 
+    id: string,
+    userId: string,
     data: UpdateCategoryRequest
   ): Promise<Category> {
     // First, verify the category exists and is owned by the user
@@ -212,9 +212,9 @@ export class CategoryService implements ICategoryService {
    * @returns Promise<boolean> - True if category exists
    */
   async existsByName(
-    userId: string, 
-    name: string, 
-    type: 'income' | 'expense'
+    userId: string,
+    name: string,
+    type: 'INCOME' | 'EXPENSE'
   ): Promise<boolean> {
     const category = await this.repository.findByNameAndType(userId, name, type);
     return !!category;
@@ -231,14 +231,14 @@ export class CategoryService implements ICategoryService {
    */
   async existsByNameForUpdate(
     id: string,
-    userId: string, 
-    name: string, 
-    type: 'income' | 'expense'
+    userId: string,
+    name: string,
+    type: 'INCOME' | 'EXPENSE'
   ): Promise<boolean> {
     const category = await this.repository.findByNameAndTypeExcludingId(
-      id, 
-      userId, 
-      name, 
+      id,
+      userId,
+      name,
       type
     );
     return !!category;

@@ -42,7 +42,7 @@ export const categoryResponseSchema = z.object({
   id: z.string().uuid(),
   userId: z.string().uuid(),
   name: z.string(),
-  type: z.enum(['income', 'expense']),
+  type: z.enum(['INCOME', 'EXPENSE']),
   createdAt: z.date(),
   updatedAt: z.date(),
 });
@@ -55,7 +55,7 @@ export const categoryWithTransactionCountResponseSchema = z.object({
   id: z.string().uuid(),
   userId: z.string().uuid(),
   name: z.string(),
-  type: z.enum(['income', 'expense']),
+  type: z.enum(['INCOME', 'EXPENSE']),
   createdAt: z.date(),
   updatedAt: z.date(),
   _count: z.object({

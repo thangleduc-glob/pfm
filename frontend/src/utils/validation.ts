@@ -78,7 +78,7 @@ export function validateCategory(name: string, type: string): CategoryValidation
     errors.name = 'Category name must be 50 characters or less';
   }
 
-  if (!type || (type !== 'income' && type !== 'expense')) {
+  if (!type || (type !== 'INCOME' && type !== 'EXPENSE')) {
     errors.type = 'Category type must be either income or expense';
   }
 
@@ -126,7 +126,7 @@ export function validateTransaction(
   }
 
   // Type validation
-  if (!type || (type !== 'income' && type !== 'expense')) {
+  if (!type || (type !== 'INCOME' && type !== 'EXPENSE')) {
     errors.type = 'Transaction type must be either income or expense';
   }
 

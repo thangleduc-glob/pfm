@@ -75,7 +75,7 @@ const CategoryList: React.FC<CategoryListProps> = ({
    */
   const handleCreateCategory = async (data: {
     name: string;
-    type: "income" | "expense";
+    type: "INCOME" | "EXPENSE";
   }) => {
     try {
       setSubmitting(true);
@@ -99,7 +99,7 @@ const CategoryList: React.FC<CategoryListProps> = ({
    */
   const handleUpdateCategory = async (data: {
     name: string;
-    type: "income" | "expense";
+    type: "INCOME" | "EXPENSE";
   }) => {
     if (!editingCategory) return;
 
@@ -168,7 +168,7 @@ const CategoryList: React.FC<CategoryListProps> = ({
    */
   const handleFormSubmit = (data: {
     name: string;
-    type: "income" | "expense";
+    type: "INCOME" | "EXPENSE";
   }) => {
     if (editingCategory) {
       handleUpdateCategory(data);
@@ -190,10 +190,10 @@ const CategoryList: React.FC<CategoryListProps> = ({
    */
   const getCategoryCounts = () => {
     const incomeCount = categories.filter(
-      (cat) => cat.type === "INCOME" as any,
+      (cat) => cat.type === ("INCOME" as any),
     ).length;
     const expenseCount = categories.filter(
-      (cat) => cat.type === "EXPENSE" as any,
+      (cat) => cat.type === ("EXPENSE" as any),
     ).length;
     return { incomeCount, expenseCount, total: categories.length };
   };

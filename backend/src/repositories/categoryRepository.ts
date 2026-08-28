@@ -4,10 +4,10 @@
  */
 
 import { PrismaClient, Category, CategoryType } from '@prisma/client';
-import { 
-  ICategoryRepository, 
-  CreateCategoryRequest, 
-  UpdateCategoryRequest 
+import {
+  ICategoryRepository,
+  CreateCategoryRequest,
+  UpdateCategoryRequest
 } from '../types/category';
 import { logger } from '../utils/logger';
 import { db } from '../config/database';
@@ -36,19 +36,19 @@ export class CategoryRepository implements ICategoryRepository {
         },
       });
 
-      logger.debug('Category created', { 
-        id: category.id, 
+      logger.debug('Category created', {
+        id: category.id,
         userId: data.userId,
         name: data.name,
-        type: data.type 
+        type: data.type
       });
       return category;
     } catch (error) {
-      logger.error('Failed to create category', { 
+      logger.error('Failed to create category', {
         userId: data.userId,
         name: data.name,
         type: data.type,
-        error: error instanceof Error ? error.message : 'Unknown error' 
+        error: error instanceof Error ? error.message : 'Unknown error'
       });
       throw new Error('Failed to create category');
     }
@@ -68,9 +68,9 @@ export class CategoryRepository implements ICategoryRepository {
       logger.debug('Category lookup by ID', { id, found: !!category });
       return category;
     } catch (error) {
-      logger.error('Failed to find category by ID', { 
-        id, 
-        error: error instanceof Error ? error.message : 'Unknown error' 
+      logger.error('Failed to find category by ID', {
+        id,
+        error: error instanceof Error ? error.message : 'Unknown error'
       });
       throw new Error('Failed to find category');
     }
@@ -91,15 +91,15 @@ export class CategoryRepository implements ICategoryRepository {
         ],
       });
 
-      logger.debug('Categories lookup by user ID', { 
-        userId, 
-        count: categories.length 
+      logger.debug('Categories lookup by user ID', {
+        userId,
+        count: categories.length
       });
       return categories;
     } catch (error) {
-      logger.error('Failed to find categories by user ID', { 
-        userId, 
-        error: error instanceof Error ? error.message : 'Unknown error' 
+      logger.error('Failed to find categories by user ID', {
+        userId,
+        error: error instanceof Error ? error.message : 'Unknown error'
       });
       throw new Error('Failed to find categories');
     }
@@ -121,18 +121,18 @@ export class CategoryRepository implements ICategoryRepository {
         },
       });
 
-      logger.debug('Category updated', { 
-        id, 
+      logger.debug('Category updated', {
+        id,
         name: data.name,
-        type: data.type 
+        type: data.type
       });
       return category;
     } catch (error) {
-      logger.error('Failed to update category', { 
+      logger.error('Failed to update category', {
         id,
         name: data.name,
         type: data.type,
-        error: error instanceof Error ? error.message : 'Unknown error' 
+        error: error instanceof Error ? error.message : 'Unknown error'
       });
       throw new Error('Failed to update category');
     }
@@ -151,9 +151,9 @@ export class CategoryRepository implements ICategoryRepository {
 
       logger.debug('Category deleted', { id });
     } catch (error) {
-      logger.error('Failed to delete category', { 
-        id, 
-        error: error instanceof Error ? error.message : 'Unknown error' 
+      logger.error('Failed to delete category', {
+        id,
+        error: error instanceof Error ? error.message : 'Unknown error'
       });
       throw new Error('Failed to delete category');
     }
@@ -173,9 +173,9 @@ export class CategoryRepository implements ICategoryRepository {
       logger.debug('Transaction count for category', { id, count });
       return count;
     } catch (error) {
-      logger.error('Failed to count transactions for category', { 
-        id, 
-        error: error instanceof Error ? error.message : 'Unknown error' 
+      logger.error('Failed to count transactions for category', {
+        id,
+        error: error instanceof Error ? error.message : 'Unknown error'
       });
       throw new Error('Failed to count transactions');
     }
@@ -189,9 +189,9 @@ export class CategoryRepository implements ICategoryRepository {
    * @returns Promise<Category | null> - The category, or null if not found
    */
   async findByNameAndType(
-    userId: string, 
-    name: string, 
-    type: 'income' | 'expense'
+    userId: string,
+    name: string,
+    type: 'INCOME' | 'EXPENSE'
   ): Promise<Category | null> {
     try {
       const category = await this.prisma.category.findFirst({
@@ -202,19 +202,19 @@ export class CategoryRepository implements ICategoryRepository {
         },
       });
 
-      logger.debug('Category lookup by name and type', { 
-        userId, 
-        name, 
-        type, 
-        found: !!category 
+      logger.debug('Category lookup by name and type', {
+        userId,
+        name,
+        type,
+        found: !!category
       });
       return category;
     } catch (error) {
-      logger.error('Failed to find category by name and type', { 
-        userId, 
-        name, 
+      logger.error('Failed to find category by name and type', {
+        userId,
+        name,
         type,
-        error: error instanceof Error ? error.message : 'Unknown error' 
+        error: error instanceof Error ? error.message : 'Unknown error'
       });
       throw new Error('Failed to find category');
     }
@@ -231,9 +231,9 @@ export class CategoryRepository implements ICategoryRepository {
    */
   async findByNameAndTypeExcludingId(
     id: string,
-    userId: string, 
-    name: string, 
-    type: 'income' | 'expense'
+    userId: string,
+    name: string,
+    type: 'INCOME' | 'EXPENSE'
   ): Promise<Category | null> {
     try {
       const category = await this.prisma.category.findFirst({
@@ -245,21 +245,21 @@ export class CategoryRepository implements ICategoryRepository {
         },
       });
 
-      logger.debug('Category lookup by name and type (excluding ID)', { 
+      logger.debug('Category lookup by name and type (excluding ID)', {
         id,
-        userId, 
-        name, 
-        type, 
-        found: !!category 
+        userId,
+        name,
+        type,
+        found: !!category
       });
       return category;
     } catch (error) {
-      logger.error('Failed to find category by name and type (excluding ID)', { 
+      logger.error('Failed to find category by name and type (excluding ID)', {
         id,
-        userId, 
-        name, 
+        userId,
+        name,
         type,
-        error: error instanceof Error ? error.message : 'Unknown error' 
+        error: error instanceof Error ? error.message : 'Unknown error'
       });
       throw new Error('Failed to find category');
     }

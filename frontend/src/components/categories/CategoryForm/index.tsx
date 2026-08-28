@@ -44,7 +44,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
   } = useForm<CreateCategoryRequest | UpdateCategoryRequest>({
     defaultValues: {
       name: category?.name || '',
-      type: category?.type || 'expense'
+      type: category?.type || 'EXPENSE'
     },
     mode: 'onChange'
   });
@@ -148,7 +148,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
               required: 'Category type is required',
               validate: {
                 validType: (value) => 
-                  (value === 'income' || value === 'expense') || 'Category type must be either income or expense'
+                  (value === 'INCOME' || value === 'EXPENSE') || 'Category type must be either income or expense'
               }
             }}
             render={({ field }) => (
@@ -159,8 +159,8 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
                 data-testid="category-type-select"
                 {...field}
               >
-                <option value="expense">Expense</option>
-                <option value="income">Income</option>
+                <option value='EXPENSE'>EXPENSE</option>
+                <option value='INCOME'>INCOME</option>
               </select>
             )}
           />

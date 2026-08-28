@@ -29,10 +29,10 @@ describe('Category Integration Tests', () => {
 
   beforeEach(async () => {
     await clearTestData(prisma);
-    
+
     // Create a test user and authenticate
     testUser = await createTestUser(prisma, 'testuser', 'TestPassword123');
-    
+
     // Login to get authentication cookies
     const loginResponse = await request(app)
       .post('/api/v1/auth/login')
@@ -41,7 +41,7 @@ describe('Category Integration Tests', () => {
         password: 'TestPassword123',
       })
       .expect(200);
-    
+
     authCookies = (loginResponse.headers['set-cookie'] as unknown) as string[];
   });
 
@@ -70,7 +70,7 @@ describe('Category Integration Tests', () => {
       expect(response.body).toHaveProperty('categories');
       expect(response.body).toHaveProperty('count', 2);
       expect(response.body.categories).toHaveLength(2);
-      
+
       // Check category structure
       response.body.categories.forEach((category: any) => {
         expect(category).toHaveProperty('id');
@@ -87,7 +87,7 @@ describe('Category Integration Tests', () => {
     it('should create a new income category', async () => {
       const categoryData = {
         name: 'Salary',
-        type: 'income',
+        type: 'INCOME',
       };
 
       const response = await request(app)
@@ -109,7 +109,7 @@ describe('Category Integration Tests', () => {
     it('should create a new expense category', async () => {
       const categoryData = {
         name: 'Food',
-        type: 'expense',
+        type: 'EXPENSE',
       };
 
       const response = await request(app)
@@ -129,7 +129,7 @@ describe('Category Integration Tests', () => {
 
       const categoryData = {
         name: 'Salary',
-        type: 'income',
+        type: 'INCOME',
       };
 
       const response = await request(app)
@@ -201,7 +201,7 @@ describe('Category Integration Tests', () => {
     it('should return 404 for category owned by another user', async () => {
       // Create another user
       const otherUser = await createTestUser(prisma, 'otheruser', 'OtherPassword123');
-      
+
       // Create a category for the other user
       const otherCategory = await createTestCategory(prisma, otherUser.id, 'Other Salary', 'INCOME');
 
@@ -232,7 +232,7 @@ describe('Category Integration Tests', () => {
 
       const updateData = {
         name: 'Updated Salary',
-        type: 'income',
+        type: 'INCOME',
       };
 
       const response = await request(app)
@@ -252,7 +252,7 @@ describe('Category Integration Tests', () => {
       const fakeId = '123e4567-e89b-12d3-a456-426614174000';
       const updateData = {
         name: 'Updated Name',
-        type: 'income',
+        type: 'INCOME',
       };
 
       const response = await request(app)
@@ -273,7 +273,7 @@ describe('Category Integration Tests', () => {
       // Try to update category2 to have the same name as the first category
       const updateData = {
         name: 'Salary',
-        type: 'income',
+        type: 'INCOME',
       };
 
       const response = await request(app)
@@ -338,7 +338,7 @@ describe('Category Integration Tests', () => {
     it('should return 409 when category has transactions', async () => {
       // Create a test category
       const category = await createTestCategory(prisma, testUser.id, 'Salary', 'INCOME');
-      
+
       // Create a transaction for this category
       await prisma.transaction.create({
         data: {

@@ -10,22 +10,22 @@ export interface BaseTransaction {
   amount: number;
   categoryId: string;
   date: Date;
-  type: 'income' | 'expense';
+  type: 'INCOME' | 'EXPENSE';
   note?: string;
 }
 
 /** Transaction creation request payload */
-export interface CreateTransactionRequest extends BaseTransaction {}
+export interface CreateTransactionRequest extends BaseTransaction { }
 
 /** Transaction update request payload */
-export interface UpdateTransactionRequest extends BaseTransaction {}
+export interface UpdateTransactionRequest extends BaseTransaction { }
 
 /** Transaction with category information */
 export interface TransactionWithCategory extends Transaction {
   category: {
     id: string;
     name: string;
-    type: 'income' | 'expense';
+    type: 'INCOME' | 'EXPENSE';
   };
 }
 
@@ -38,13 +38,13 @@ export interface TransactionWithRelations extends Transaction {
   category: {
     id: string;
     name: string;
-    type: 'income' | 'expense';
+    type: 'INCOME' | 'EXPENSE';
   };
 }
 
 /** Transaction filter options */
 export interface TransactionFilters {
-  type?: 'income' | 'expense';
+  type?: 'INCOME' | 'EXPENSE';
   categoryId?: string;
   startDate?: Date;
   endDate?: Date;
@@ -88,7 +88,7 @@ export interface ITransactionService {
   delete(id: string, userId: string): Promise<void>;
   getSummary(userId: string, filters?: Omit<TransactionFilters, 'page' | 'limit'>): Promise<TransactionSummary>;
   getMonthlySummary(userId: string, months?: number): Promise<MonthlyTransactionSummary[]>;
-  validateCategoryType(categoryId: string, userId: string, type: 'income' | 'expense'): Promise<boolean>;
+  validateCategoryType(categoryId: string, userId: string, type: 'INCOME' | 'EXPENSE'): Promise<boolean>;
 }
 
 /** Transaction repository interface */
@@ -100,5 +100,5 @@ export interface ITransactionRepository {
   delete(id: string): Promise<void>;
   getSummary(userId: string, filters?: Omit<TransactionFilters, 'page' | 'limit'>): Promise<TransactionSummary>;
   getMonthlySummary(userId: string, months?: number): Promise<MonthlyTransactionSummary[]>;
-  findCategoryById(categoryId: string): Promise<{ id: string; name: string; type: 'income' | 'expense' } | null>;
+  findCategoryById(categoryId: string): Promise<{ id: string; name: string; type: 'INCOME' | 'EXPENSE' } | null>;
 }

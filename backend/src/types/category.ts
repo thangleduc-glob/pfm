@@ -8,14 +8,14 @@ import { Category } from '@prisma/client';
 /** Base category interface */
 export interface BaseCategory {
   name: string;
-  type: 'income' | 'expense';
+  type: 'INCOME' | 'EXPENSE';
 }
 
 /** Category creation request payload */
-export interface CreateCategoryRequest extends BaseCategory {}
+export interface CreateCategoryRequest extends BaseCategory { }
 
 /** Category update request payload */
-export interface UpdateCategoryRequest extends BaseCategory {}
+export interface UpdateCategoryRequest extends BaseCategory { }
 
 /** Category with user information */
 export interface CategoryWithUser extends Category {
@@ -39,8 +39,8 @@ export interface ICategoryService {
   findByUser(userId: string): Promise<Category[]>;
   update(id: string, userId: string, data: UpdateCategoryRequest): Promise<Category>;
   delete(id: string, userId: string): Promise<void>;
-  existsByName(userId: string, name: string, type: 'income' | 'expense'): Promise<boolean>;
-  existsByNameForUpdate(id: string, userId: string, name: string, type: 'income' | 'expense'): Promise<boolean>;
+  existsByName(userId: string, name: string, type: 'INCOME' | 'EXPENSE'): Promise<boolean>;
+  existsByNameForUpdate(id: string, userId: string, name: string, type: 'INCOME' | 'EXPENSE'): Promise<boolean>;
   hasTransactions(id: string, userId: string): Promise<boolean>;
 }
 
@@ -52,6 +52,6 @@ export interface ICategoryRepository {
   update(id: string, data: UpdateCategoryRequest): Promise<Category>;
   delete(id: string): Promise<void>;
   countTransactions(id: string): Promise<number>;
-  findByNameAndType(userId: string, name: string, type: 'income' | 'expense'): Promise<Category | null>;
-  findByNameAndTypeExcludingId(id: string, userId: string, name: string, type: 'income' | 'expense'): Promise<Category | null>;
+  findByNameAndType(userId: string, name: string, type: 'INCOME' | 'EXPENSE'): Promise<Category | null>;
+  findByNameAndTypeExcludingId(id: string, userId: string, name: string, type: 'INCOME' | 'EXPENSE'): Promise<Category | null>;
 }

@@ -10,24 +10,24 @@ export const ERROR_CODES = {
   AUTH_EXPIRED: 'AUTH_EXPIRED',
   AUTH_INVALID: 'AUTH_INVALID',
   FORBIDDEN: 'FORBIDDEN',
-  
+
   // Validation errors
   VALIDATION_ERROR: 'VALIDATION_ERROR',
   INVALID_INPUT: 'INVALID_INPUT',
-  
+
   // Resource errors
   RESOURCE_NOT_FOUND: 'RESOURCE_NOT_FOUND',
   DUPLICATE_RESOURCE: 'DUPLICATE_RESOURCE',
   RESOURCE_CONFLICT: 'RESOURCE_CONFLICT',
-  
+
   // Business logic errors
   INSUFFICIENT_FUNDS: 'INSUFFICIENT_FUNDS',
   CATEGORY_HAS_TRANSACTIONS: 'CATEGORY_HAS_TRANSACTIONS',
   CATEGORY_TYPE_MISMATCH: 'CATEGORY_TYPE_MISMATCH',
-  
+
   // Rate limiting
   RATE_LIMIT_EXCEEDED: 'RATE_LIMIT_EXCEEDED',
-  
+
   // Server errors
   INTERNAL_ERROR: 'INTERNAL_ERROR',
   DATABASE_ERROR: 'DATABASE_ERROR',
@@ -51,14 +51,14 @@ export const HTTP_STATUS = {
 
 /** Transaction types */
 export const TRANSACTION_TYPES = {
-  INCOME: 'income',
-  EXPENSE: 'expense'
+  INCOME: 'INCOME',
+  EXPENSE: 'EXPENSE'
 } as const;
 
 /** Category types */
 export const CATEGORY_TYPES = {
-  INCOME: 'income',
-  EXPENSE: 'expense'
+  INCOME: 'INCOME',
+  EXPENSE: 'EXPENSE'
 } as const;
 
 /** Pagination defaults */
@@ -191,23 +191,23 @@ export const ERROR_MESSAGES = {
   TOKEN_EXPIRED: 'Authentication token has expired',
   TOKEN_INVALID: 'Invalid authentication token',
   ACCESS_DENIED: 'Access denied',
-  
+
   // Validation
   REQUIRED_FIELD: 'This field is required',
   INVALID_FORMAT: 'Invalid format',
   TOO_LONG: 'This field is too long',
   TOO_SHORT: 'This field is too short',
-  
+
   // Resources
   NOT_FOUND: 'Resource not found',
   ALREADY_EXISTS: 'Resource already exists',
   CANNOT_DELETE: 'Cannot delete this resource',
-  
+
   // Business logic
   INSUFFICIENT_BALANCE: 'Insufficient balance',
   CATEGORY_IN_USE: 'Cannot delete category with existing transactions',
   TYPE_MISMATCH: 'Category type must match transaction type',
-  
+
   // Server
   INTERNAL_ERROR: 'An unexpected error occurred',
   SERVICE_UNAVAILABLE: 'Service temporarily unavailable'

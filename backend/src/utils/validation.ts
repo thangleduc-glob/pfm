@@ -43,7 +43,7 @@ export const registerSchema = z.object({
 });
 
 /** Category type validation */
-export const categoryTypeSchema = z.enum(['income', 'expense'], {
+export const categoryTypeSchema = z.enum(['INCOME', 'EXPENSE'], {
   errorMap: () => ({ message: 'Category type must be either income or expense' })
 });
 
@@ -90,7 +90,7 @@ export const noteSchema = z
   .optional();
 
 /** Transaction type validation */
-export const transactionTypeSchema = z.enum(['income', 'expense'], {
+export const transactionTypeSchema = z.enum(['INCOME', 'EXPENSE'], {
   errorMap: () => ({ message: 'Transaction type must be either income or expense' })
 });
 
@@ -160,8 +160,8 @@ export function validateDateNotFuture(dateString: string): Date {
  * @throws Error if types don't match
  */
 export function validateCategoryTypeMatch(
-  categoryType: 'income' | 'expense',
-  transactionType: 'income' | 'expense'
+  categoryType: 'INCOME' | 'EXPENSE',
+  transactionType: 'INCOME' | 'EXPENSE'
 ): void {
   if (categoryType !== transactionType) {
     throw new Error('Category type must match transaction type');

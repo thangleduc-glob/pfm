@@ -66,17 +66,17 @@ describe('validateUsername', () => {
 
 describe('validateCategory', () => {
   it('should validate a proper category', () => {
-    const result = validateCategory('Food', 'expense');
+    const result = validateCategory('Food', 'EXPENSE');
     expect(result).toEqual({});
   });
 
   it('should reject empty category name', () => {
-    const result = validateCategory('', 'expense');
+    const result = validateCategory('', 'EXPENSE');
     expect(result.name).toBe('Category name is required');
   });
 
   it('should reject category name too long', () => {
-    const result = validateCategory('a'.repeat(51), 'expense');
+    const result = validateCategory('a'.repeat(51), 'EXPENSE');
     expect(result.name).toBe('Category name must be 50 characters or less');
   });
 
@@ -88,39 +88,39 @@ describe('validateCategory', () => {
 
 describe('validateTransaction', () => {
   it('should validate a proper transaction', () => {
-    const result = validateTransaction('100', 'cat1', '2024-01-01', 'expense');
+    const result = validateTransaction('100', 'cat1', '2024-01-01', 'EXPENSE');
     expect(result).toEqual({});
   });
 
   it('should reject invalid amount', () => {
-    const result = validateTransaction('invalid', 'cat1', '2024-01-01', 'expense');
+    const result = validateTransaction('invalid', 'cat1', '2024-01-01', 'EXPENSE');
     expect(result.amount).toBe('Amount is required');
   });
 
   it('should reject zero amount', () => {
-    const result = validateTransaction('0', 'cat1', '2024-01-01', 'expense');
+    const result = validateTransaction('0', 'cat1', '2024-01-01', 'EXPENSE');
     expect(result.amount).toBe('Amount must be greater than 0');
   });
 
   it('should reject negative amount', () => {
-    const result = validateTransaction('-100', 'cat1', '2024-01-01', 'expense');
+    const result = validateTransaction('-100', 'cat1', '2024-01-01', 'EXPENSE');
     expect(result.amount).toBe('Amount must be greater than 0');
   });
 
   it('should reject empty category', () => {
-    const result = validateTransaction('100', '', '2024-01-01', 'expense');
+    const result = validateTransaction('100', '', '2024-01-01', 'EXPENSE');
     expect(result.categoryId).toBe('Category is required');
   });
 
   it('should reject empty date', () => {
-    const result = validateTransaction('100', 'cat1', '', 'expense');
+    const result = validateTransaction('100', 'cat1', '', 'EXPENSE');
     expect(result.date).toBe('Date is required');
   });
 
   it('should reject future date', () => {
     const futureDate = new Date();
     futureDate.setDate(futureDate.getDate() + 1);
-    const result = validateTransaction('100', 'cat1', futureDate.toISOString().split('T')[0], 'expense');
+    const result = validateTransaction('100', 'cat1', futureDate.toISOString().split('T')[0], 'EXPENSE');
     expect(result.date).toBe('Date cannot be in the future');
   });
 
@@ -130,7 +130,7 @@ describe('validateTransaction', () => {
   });
 
   it('should reject note too long', () => {
-    const result = validateTransaction('100', 'cat1', '2024-01-01', 'expense', 'a'.repeat(256));
+    const result = validateTransaction('100', 'cat1', '2024-01-01', 'EXPENSE', 'a'.repeat(256));
     expect(result.note).toBe('Note must be 255 characters or less');
   });
 });
