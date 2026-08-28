@@ -3,12 +3,12 @@
  * Displays a list of categories with filtering and actions
  */
 
-import React, { useState, useEffect } from 'react';
-import { Category, CategoryWithCount } from '../../../types/category';
-import CategoryCard from '../CategoryCard';
-import CategoryForm from '../CategoryForm';
-import CategoryService from '../../../services/categoryService';
-import './CategoryList.css';
+import React, { useState, useEffect } from "react";
+import { Category, CategoryWithCount } from "../../../types/category";
+import CategoryCard from "../CategoryCard";
+import CategoryForm from "../CategoryForm";
+import CategoryService from "../../../services/categoryService";
+import "./CategoryList.css";
 
 interface CategoryListProps {
   onEditCategory?: (category: Category) => void;
@@ -25,14 +25,14 @@ interface CategoryListProps {
 const CategoryList: React.FC<CategoryListProps> = ({
   onEditCategory,
   onDeleteCategory,
-  onCreateCategory
+  onCreateCategory,
 }) => {
   const [categories, setCategories] = useState<CategoryWithCount[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [editingCategory, setEditingCategory] = useState<Category | null>(null);
-  const [filter, setFilter] = useState<'all' | 'income' | 'expense'>('all');
+  const [filter, setFilter] = useState<"ALL" | "INCOME" | "EXPENSE">("ALL");
   const [submitting, setSubmitting] = useState(false);
 
   // Load categories on component mount
@@ -47,20 +47,24 @@ const CategoryList: React.FC<CategoryListProps> = ({
     try {
       setLoading(true);
       setError(null);
-      
+
       // In a real implementation, we would get transaction counts from the API
       // For now, we'll simulate it
       const response = await CategoryService.getCategories();
-      
+
       // Add mock transaction counts for demonstration
-      const categoriesWithCount: CategoryWithCount[] = response.categories.map(cat => ({
-        ...cat,
-        transactionCount: cat.id === '1' ? 5 : cat.id === '2' ? 1 : 0 // Deterministic mock counts
-      }));
-      
+      const categoriesWithCount: CategoryWithCount[] = response.categories.map(
+        (cat) => ({
+          ...cat,
+          transactionCount: cat.id === "1" ? 5 : cat.id === "2" ? 1 : 0, // Deterministic mock counts
+        }),
+      );
+
       setCategories(categoriesWithCount);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to load categories');
+      setError(
+        err instanceof Error ? err.message : "Failed to load categories",
+      );
     } finally {
       setLoading(false);
     }
@@ -69,15 +73,22 @@ const CategoryList: React.FC<CategoryListProps> = ({
   /**
    * Handle category creation
    */
-  const handleCreateCategory = async (data: { name: string; type: 'income' | 'expense' }) => {
+  const handleCreateCategory = async (data: {
+    name: string;
+    type: "income" | "expense";
+  }) => {
     try {
       setSubmitting(true);
       await CategoryService.createCategory(data);
       await loadCategories();
+      // Set filter to the type of the newly created category
+      setFilter(data.type.toUpperCase() as any);
       setShowForm(false);
       onCreateCategory?.();
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to create category');
+      setError(
+        err instanceof Error ? err.message : "Failed to create category",
+      );
     } finally {
       setSubmitting(false);
     }
@@ -86,17 +97,24 @@ const CategoryList: React.FC<CategoryListProps> = ({
   /**
    * Handle category update
    */
-  const handleUpdateCategory = async (data: { name: string; type: 'income' | 'expense' }) => {
+  const handleUpdateCategory = async (data: {
+    name: string;
+    type: "income" | "expense";
+  }) => {
     if (!editingCategory) return;
-    
+
     try {
       setSubmitting(true);
       await CategoryService.updateCategory(editingCategory.id, data);
       await loadCategories();
+      // Set filter to the updated category type
+      setFilter(data.type as any);
       setEditingCategory(null);
       setShowForm(false);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to update category');
+      setError(
+        err instanceof Error ? err.message : "Failed to update category",
+      );
     } finally {
       setSubmitting(false);
     }
@@ -115,7 +133,11 @@ const CategoryList: React.FC<CategoryListProps> = ({
    * Handle category delete
    */
   const handleDelete = async (category: Category) => {
-    if (!window.confirm(`Are you sure you want to delete the category "${category.name}"?`)) {
+    if (
+      !window.confirm(
+        `Are you sure you want to delete the category "${category.name}"?`,
+      )
+    ) {
       return;
     }
 
@@ -125,7 +147,9 @@ const CategoryList: React.FC<CategoryListProps> = ({
       await loadCategories();
       onDeleteCategory?.(category);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to delete category');
+      setError(
+        err instanceof Error ? err.message : "Failed to delete category",
+      );
     } finally {
       setSubmitting(false);
     }
@@ -142,7 +166,10 @@ const CategoryList: React.FC<CategoryListProps> = ({
   /**
    * Handle form submission
    */
-  const handleFormSubmit = (data: { name: string; type: 'income' | 'expense' }) => {
+  const handleFormSubmit = (data: {
+    name: string;
+    type: "income" | "expense";
+  }) => {
     if (editingCategory) {
       handleUpdateCategory(data);
     } else {
@@ -153,17 +180,21 @@ const CategoryList: React.FC<CategoryListProps> = ({
   /**
    * Filter categories based on selected filter
    */
-  const filteredCategories = categories.filter(category => {
-    if (filter === 'all') return true;
-    return category.type === filter;
+  const filteredCategories = categories.filter((category) => {
+    if (filter === "ALL") return true;
+    return category.type === (filter as any);
   });
 
   /**
    * Get category counts by type
    */
   const getCategoryCounts = () => {
-    const incomeCount = categories.filter(cat => cat.type === 'income').length;
-    const expenseCount = categories.filter(cat => cat.type === 'expense').length;
+    const incomeCount = categories.filter(
+      (cat) => cat.type === "INCOME" as any,
+    ).length;
+    const expenseCount = categories.filter(
+      (cat) => cat.type === "EXPENSE" as any,
+    ).length;
     return { incomeCount, expenseCount, total: categories.length };
   };
 
@@ -224,22 +255,22 @@ const CategoryList: React.FC<CategoryListProps> = ({
 
       <div className="category-list__filters">
         <button
-          className={`category-list__filter ${filter === 'all' ? 'category-list__filter--active' : ''}`}
-          onClick={() => setFilter('all')}
+          className={`category-list__filter ${filter === "ALL" ? "category-list__filter--active" : ""}`}
+          onClick={() => setFilter("ALL")}
           data-testid="filter-all"
         >
           All ({counts.total})
         </button>
         <button
-          className={`category-list__filter ${filter === 'income' ? 'category-list__filter--active' : ''}`}
-          onClick={() => setFilter('income')}
+          className={`category-list__filter ${filter === "INCOME" ? "category-list__filter--active" : ""}`}
+          onClick={() => setFilter("INCOME")}
           data-testid="filter-income"
         >
           Income ({counts.incomeCount})
         </button>
         <button
-          className={`category-list__filter ${filter === 'expense' ? 'category-list__filter--active' : ''}`}
-          onClick={() => setFilter('expense')}
+          className={`category-list__filter ${filter === "EXPENSE" ? "category-list__filter--active" : ""}`}
+          onClick={() => setFilter("EXPENSE")}
           data-testid="filter-expense"
         >
           Expense ({counts.expenseCount})
@@ -260,10 +291,9 @@ const CategoryList: React.FC<CategoryListProps> = ({
         {filteredCategories.length === 0 ? (
           <div className="category-list__empty" data-testid="empty-state">
             <p>
-              {filter === 'all' 
-                ? 'No categories found. Create your first category to get started!'
-                : `No ${filter} categories found.`
-              }
+              {filter === "ALL"
+                ? "No categories found. Create your first category to get started!"
+                : `No ${filter} categories found.`}
             </p>
           </div>
         ) : (

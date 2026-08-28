@@ -8,6 +8,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { connectDatabase, disconnectDatabase } from './config/database';
 import { authRoutes } from './routes/auth';
+import { categoryRoutes } from './routes/categories';
 import { logger } from './utils/logger';
 
 // Create Express app
@@ -32,6 +33,7 @@ app.get('/health', (req, res) => {
 
 // API routes
 app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/categories', categoryRoutes);
 
 // 404 handler
 app.use('*', (req, res) => {
