@@ -4,7 +4,7 @@ import 'jest';
 process.env.NODE_ENV = 'test';
 process.env.DATABASE_URL = 'mysql://root:12345678@localhost:3306/pfm_test';
 process.env.JWT_SECRET = 'test-jwt-secret-key-minimum-256-bits-long';
-process.env.LOG_LEVEL = 'error';
+process.env.LOG_LEVEL = 'none';
 
 // Mock console methods to reduce noise in tests
 global.console = {
