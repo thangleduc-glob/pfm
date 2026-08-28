@@ -165,13 +165,17 @@
 - `backend/src/services/categoryService.ts`
 - `backend/src/repositories/categoryRepository.ts`
 - `backend/src/schemas/categorySchema.ts`
+- `backend/tests/unit/services/categoryService.test.ts`
+- `backend/tests/unit/repositories/categoryRepository.test.ts`
+- `backend/tests/unit/schemas/categorySchema.test.ts`
 
 **Acceptance Criteria:**
-- [ ] Category creation validates unique (user_id, name, type)
-- [ ] Category updates prevent duplicate names
-- [ ] Category deletion prevented when transactions exist
-- [ ] All operations enforce user ownership
-- [ ] Service layer has 80% unit test coverage
+- [x] Category creation validates unique (user_id, name, type)
+- [x] Category updates prevent duplicate names
+- [x] Category deletion prevented when transactions exist
+- [x] All operations enforce user ownership
+- [x] Service layer has 80% unit test coverage
+**Status:** COMPLETED ✓
 **Time Estimate:** 30 minutes
 **Dependencies:** T008
 
