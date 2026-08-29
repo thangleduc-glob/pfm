@@ -1,13 +1,19 @@
 /**
- * Dashboard Page Component
- * Main dashboard page for authenticated users
+ * DashboardPage Component
+ * Main dashboard page that displays financial summary
  */
 
-const DashboardPage = () => {
+import React from 'react';
+import DashboardSummary from '../../components/dashboard/DashboardSummary';
+import './DashboardPage.css';
+
+/**
+ * DashboardPage component - main dashboard view
+ */
+const DashboardPage: React.FC = () => {
   return (
-    <div className="dashboard">
-      <h1>Dashboard</h1>
-      <p>Welcome to your Personal Finance Manager!</p>
+    <div className="dashboard-page">
+      <DashboardSummary />
     </div>
   );
 };
