@@ -1,0 +1,197 @@
+/* TransactionFilter Component Styles */
+.transaction-filter {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-filter__basic {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: 16px;
+  align-items: end;
+}
+
+.transaction-filter__advanced {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e5e7eb; /* gray-200 */
+}
+
+.transaction-filter__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.transaction-filter__label {
+  font-weight: 500;
+  color: #374151; /* gray-700 */
+  font-size: 14px;
+}
+
+.transaction-filter__input,
+.transaction-filter__select {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db; /* gray-300 */
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.transaction-filter__input:focus,
+.transaction-filter__select:focus {
+  outline: none;
+  border-color: #3b82f6; /* blue-500 */
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); /* blue-500 with opacity */
+}
+
+.transaction-filter__actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.transaction-filter__button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.transaction-filter__button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.transaction-filter__button--secondary {
+  background-color: #f3f4f6; /* gray-100 */
+  color: #374151; /* gray-700 */
+  border: 1px solid #d1d5db; /* gray-300 */
+}
+
+.transaction-filter__button--secondary:hover:not(:disabled) {
+  background-color: #e5e7eb; /* gray-200 */
+}
+
+.transaction-filter__button--clear {
+  background-color: #fef3c7; /* amber-100 */
+  color: #92400e; /* amber-800 */
+  border: 1px solid #fcd34d; /* amber-300 */
+}
+
+.transaction-filter__button--clear:hover:not(:disabled) {
+  background-color: #fde68a; /* amber-200 */
+}
+
+.transaction-filter__active {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e5e7eb; /* gray-200 */
+}
+
+.transaction-filter__active-label {
+  font-weight: 500;
+  color: #374151; /* gray-700 */
+  font-size: 14px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.transaction-filter__active-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.transaction-filter__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #eff6ff; /* blue-50 */
+  color: #1e40af; /* blue-800 */
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid #bfdbfe; /* blue-200 */
+}
+
+.transaction-filter__tag-remove {
+  background: none;
+  border: none;
+  color: #1e40af; /* blue-800 */
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  transition: background-color 0.2s ease;
+}
+
+.transaction-filter__tag-remove:hover {
+  background-color: #dbeafe; /* blue-100 */
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .transaction-filter__basic {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .transaction-filter__actions {
+    grid-column: span 2;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .transaction-filter {
+    padding: 16px;
+  }
+
+  .transaction-filter__basic {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .transaction-filter__actions {
+    grid-column: span 1;
+    justify-content: stretch;
+  }
+
+  .transaction-filter__button {
+    flex: 1;
+  }
+
+  .transaction-filter__advanced {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .transaction-filter__active-tags {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .transaction-filter__tag {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

@@ -201,23 +201,8 @@ export async function createTransaction(req: Request, res: Response): Promise<vo
       });
       return;
     }
-
-    // Validate request body
-    const transactionData = createTransactionRequestSchema.parse(req.body);
-
-    // Create transaction for the user
-    const createData: any = {
-      amount: transactionData.amount,
-      categoryId: transactionData.categoryId,
-      date: transactionData.date,
-      type: transactionData.type,
-    };
     
-    if (transactionData.note !== undefined) {
-      createData.note = transactionData.note;
-    }
-    
-    const transaction = await transactionService.create(userId, createData);
+    const transaction = await transactionService.create(userId, req.body);
 
     logger.info('Transaction created successfully', {
       transactionId: transaction.id,

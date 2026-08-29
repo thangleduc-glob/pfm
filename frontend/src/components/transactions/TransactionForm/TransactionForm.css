@@ -1,0 +1,192 @@
+/* TransactionForm Component Styles */
+.transaction-form {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-form__header {
+  margin-bottom: 24px;
+}
+
+.transaction-form__header h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937; /* gray-800 */
+}
+
+.transaction-form__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  color: #6b7280; /* gray-500 */
+}
+
+.transaction-form__spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #f3f4f6; /* gray-100 */
+  border-top: 3px solid #3b82f6; /* blue-500 */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 12px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.transaction-form__error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #fef2f2; /* red-50 */
+  border: 1px solid #fecaca; /* red-200 */
+  color: #dc2626; /* red-600 */
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.transaction-form__error-icon {
+  font-size: 16px;
+}
+
+.transaction-form__error-close {
+  margin-left: auto;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #dc2626; /* red-600 */
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.transaction-form__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.transaction-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.transaction-form__label {
+  font-weight: 500;
+  color: #374151; /* gray-700 */
+  font-size: 14px;
+}
+
+.transaction-form__input,
+.transaction-form__select,
+.transaction-form__textarea {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db; /* gray-300 */
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.transaction-form__input:focus,
+.transaction-form__select:focus,
+.transaction-form__textarea:focus {
+  outline: none;
+  border-color: #3b82f6; /* blue-500 */
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); /* blue-500 with opacity */
+}
+
+.transaction-form__input--error,
+.transaction-form__select--error,
+.transaction-form__textarea--error {
+  border-color: #ef4444; /* red-500 */
+}
+
+.transaction-form__input--error:focus,
+.transaction-form__select--error:focus,
+.transaction-form__textarea--error:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1); /* red-500 with opacity */
+}
+
+.transaction-form__textarea {
+  resize: vertical;
+  min-height: 80px;
+  font-family: inherit;
+}
+
+.transaction-form__error-text {
+  color: #ef4444; /* red-500 */
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.transaction-form__actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.transaction-form__button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 100px;
+}
+
+.transaction-form__button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.transaction-form__button--cancel {
+  background-color: #f3f4f6; /* gray-100 */
+  color: #374151; /* gray-700 */
+  border: 1px solid #d1d5db; /* gray-300 */
+}
+
+.transaction-form__button--cancel:hover:not(:disabled) {
+  background-color: #e5e7eb; /* gray-200 */
+}
+
+.transaction-form__button--submit {
+  background-color: #3b82f6; /* blue-500 */
+  color: white;
+}
+
+.transaction-form__button--submit:hover:not(:disabled) {
+  background-color: #2563eb; /* blue-600 */
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+  .transaction-form {
+    padding: 16px;
+  }
+
+  .transaction-form__actions {
+    flex-direction: column;
+  }
+
+  .transaction-form__button {
+    width: 100%;
+  }
+}

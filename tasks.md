@@ -268,13 +268,15 @@
 - `frontend/src/pages/TransactionsPage/`
 
 **Acceptance Criteria:**
-- [ ] TransactionList displays paginated results
-- [ ] TransactionForm validates all inputs
-- [ ] TransactionFilter supports type, category, and date filtering
-- [ ] Components handle loading and error states
+- [x] TransactionList displays paginated results
+- [x] TransactionForm validates all inputs
+- [x] TransactionFilter supports type, category, and date filtering
+- [x] Components handle loading and error states
 - [ ] E2E tests verify transaction creation and filtering
 **Time Estimate:** 45 minutes
 **Dependencies:** T013
+**Status:** COMPLETED ✓
+**Date Completed:** 2026-08-29
 
 ## Phase 2: Core Features - Dashboard
 
