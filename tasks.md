@@ -286,15 +286,20 @@
 - `backend/src/services/dashboardService.ts`
 - `backend/src/controllers/dashboardController.ts`
 - `backend/src/routes/dashboard.ts`
+- `backend/src/server.ts` (updated to include dashboard routes)
+- `backend/tests/unit/services/dashboardService.test.ts`
+- `backend/tests/integration/dashboard.test.ts`
 
 **Acceptance Criteria:**
-- [ ] Current balance calculated correctly (income - expenses)
-- [ ] Current month income calculated for calendar month
-- [ ] Current month expenses calculated for calendar month
-- [ ] Remaining amount calculated (income - expenses)
-- [ ] All calculations handle edge cases (no data, etc.)
+- [x] Current balance calculated correctly (income - expenses)
+- [x] Current month income calculated for calendar month
+- [x] Current month expenses calculated for calendar month
+- [x] Remaining amount calculated (income - expenses)
+- [x] All calculations handle edge cases (no data, etc.)
+**Status:** COMPLETED ✓
 **Time Estimate:** 30 minutes
 **Dependencies:** T014
+**Date Completed:** 2026-08-29
 
 ### T016: Implement Frontend Dashboard Components
 **Description:** Create dashboard components displaying financial summaries.
@@ -452,12 +457,12 @@
 ## Task Summary
 
 - **Total Tasks:** 24
-- **Completed Tasks:** 10 / 24
+- **Completed Tasks:** 11 / 24
 - **Setup Phase:** 4 tasks (T001-T004) - COMPLETED ✓
-- **Core Features Phase:** 6 / 14 tasks completed (T005-T010)
+- **Core Features Phase:** 7 / 14 tasks completed (T005-T015)
 - **Polish Phase:** 0 / 6 tasks completed (T019-T024)
 - **Estimated Total Time:** 15-18 hours
-- **Actual Time Spent:** 8h 30m
+- **Actual Time Spent:** 9h 00m
 
 ## Implementation Notes
 

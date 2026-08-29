@@ -10,6 +10,7 @@ import { connectDatabase, disconnectDatabase } from './config/database';
 import { authRoutes } from './routes/auth';
 import { categoryRoutes } from './routes/categories';
 import { transactionRoutes } from './routes/transactions';
+import { dashboardRoutes } from './routes/dashboard';
 import { logger } from './utils/logger';
 
 // Create Express app
@@ -36,6 +37,7 @@ app.get('/health', (req, res) => {
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/categories', categoryRoutes);
 app.use('/api/v1/transactions', transactionRoutes);
+app.use('/api/v1/dashboard', dashboardRoutes);
 
 // 404 handler
 app.use('*', (req, res) => {
