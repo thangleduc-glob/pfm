@@ -243,15 +243,20 @@
 **Files Created/Modified:**
 - `backend/src/controllers/transactionController.ts`
 - `backend/src/routes/transactions.ts`
+- `backend/src/server.ts` (updated to include transaction routes)
+- `backend/tests/integration/transaction.test.ts`
+- `backend/tests/helpers/testApp.ts` (updated to include transaction routes)
 
 **Acceptance Criteria:**
-- [ ] GET /api/v1/transactions supports filtering by type, category, date
-- [ ] POST /api/v1/transactions creates transaction with validation
-- [ ] Pagination works correctly with limit/offset
-- [ ] Responses include category information
-- [ ] Integration tests cover filtering and pagination
+- [x] GET /api/v1/transactions supports filtering by type, category, date
+- [x] POST /api/v1/transactions creates transaction with validation
+- [x] Pagination works correctly with limit/offset
+- [x] Responses include category information
+- [x] Integration tests cover filtering and pagination
 **Time Estimate:** 30 minutes
 **Dependencies:** T012
+**Status:** COMPLETED ✓
+**Date Completed:** 2026-08-28
 
 ### T014: Implement Frontend Transaction Components
 **Description:** Create transaction management components with forms, lists, and filtering.

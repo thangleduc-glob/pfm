@@ -9,6 +9,7 @@ import cookieParser from 'cookie-parser';
 import { connectDatabase, disconnectDatabase } from './config/database';
 import { authRoutes } from './routes/auth';
 import { categoryRoutes } from './routes/categories';
+import { transactionRoutes } from './routes/transactions';
 import { logger } from './utils/logger';
 
 // Create Express app
@@ -34,6 +35,7 @@ app.get('/health', (req, res) => {
 // API routes
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/categories', categoryRoutes);
+app.use('/api/v1/transactions', transactionRoutes);
 
 // 404 handler
 app.use('*', (req, res) => {
