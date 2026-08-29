@@ -11,6 +11,7 @@ import { authRoutes } from './routes/auth';
 import { categoryRoutes } from './routes/categories';
 import { transactionRoutes } from './routes/transactions';
 import { dashboardRoutes } from './routes/dashboard';
+import { reportsRoutes } from './routes/reports';
 import { logger } from './utils/logger';
 
 // Create Express app
@@ -29,7 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Health check endpoint
-app.get('/health', (req, res) => {
+app.get('/health', (_req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
@@ -38,6 +39,7 @@ app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/categories', categoryRoutes);
 app.use('/api/v1/transactions', transactionRoutes);
 app.use('/api/v1/dashboard', dashboardRoutes);
+app.use('/api/v1/reports', reportsRoutes);
 
 // 404 handler
 app.use('*', (req, res) => {
@@ -48,7 +50,7 @@ app.use('*', (req, res) => {
 });
 
 // Error handler
-app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+app.use((err: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
   logger.error('Unhandled error:', err);
   res.status(err.status || 500).json({
     error: err.name || 'Internal Server Error',
