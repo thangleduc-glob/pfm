@@ -1,0 +1,166 @@
+.categoryChart {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.categoryChart h3 {
+  margin: 0 0 24px 0;
+  color: #333;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.chartContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.chartBar {
+  display: grid;
+  grid-template-columns: 200px 1fr 60px;
+  align-items: center;
+  gap: 16px;
+}
+
+.barLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.categoryName {
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.categoryAmount {
+  color: #666;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.barTrack {
+  height: 24px;
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.barFill {
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50, #66bb6a);
+  border-radius: 12px;
+  transition: width 0.3s ease;
+  min-width: 2px;
+}
+
+.barPercentage {
+  text-align: right;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.chartLegend {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legendColor {
+  width: 16px;
+  height: 16px;
+  background: linear-gradient(90deg, #4caf50, #66bb6a);
+  border-radius: 4px;
+}
+
+.legendTotal {
+  font-weight: 600;
+  color: #333;
+  font-size: 16px;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-size: 16px;
+}
+
+.error {
+  text-align: center;
+  padding: 40px;
+  color: #d32f2f;
+  font-size: 16px;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.emptyState p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .chartBar {
+    grid-template-columns: 150px 1fr 50px;
+    gap: 12px;
+  }
+  
+  .categoryName {
+    font-size: 12px;
+  }
+  
+  .categoryAmount {
+    font-size: 11px;
+  }
+  
+  .barPercentage {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chartBar {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .barLabel {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .barTrack {
+    order: 3;
+  }
+  
+  .barPercentage {
+    text-align: left;
+    order: 2;
+  }
+}

@@ -19,7 +19,7 @@ describe("TransactionFilter", () => {
     {
       id: "1",
       name: "Food",
-      type: "expense",
+      type: "EXPENSE",
       userId: "user1",
       createdAt: "",
       updatedAt: "",
@@ -39,7 +39,9 @@ describe("TransactionFilter", () => {
   };
 
   beforeEach(() => {
-    mockTransactionService.getCategories.mockResolvedValue(mockCategories as any);
+    mockTransactionService.getCategories.mockResolvedValue(
+      mockCategories as any,
+    );
   });
 
   it("renders filter controls correctly", async () => {
@@ -97,10 +99,10 @@ describe("TransactionFilter", () => {
       expect(screen.getByTestId("type-filter")).toBeInTheDocument();
     });
 
-    await userEvent.selectOptions(screen.getByTestId("type-filter"), "income");
+    await userEvent.selectOptions(screen.getByTestId("type-filter"), "INCOME");
     expect(onFiltersChange).toHaveBeenCalledWith({
       ...mockFilters,
-      type: "income",
+      type: "INCOME",
     });
   });
 
@@ -174,7 +176,7 @@ describe("TransactionFilter", () => {
   it("clears all filters when clear button is clicked", async () => {
     const onFiltersChange = jest.fn();
     const filtersWithValues: TransactionFilters = {
-      type: "expense",
+      type: "EXPENSE",
       categoryId: "1",
       startDate: "2024-01-01",
       endDate: "2024-01-31",
@@ -205,7 +207,7 @@ describe("TransactionFilter", () => {
 
   it("displays active filter tags", async () => {
     const filtersWithValues: TransactionFilters = {
-      type: "expense",
+      type: "EXPENSE",
       categoryId: "1",
       search: "test",
     };
@@ -227,7 +229,7 @@ describe("TransactionFilter", () => {
   it("removes individual filter when tag remove button is clicked", async () => {
     const onFiltersChange = jest.fn();
     const filtersWithValues: TransactionFilters = {
-      type: "expense",
+      type: "EXPENSE",
     };
 
     render(

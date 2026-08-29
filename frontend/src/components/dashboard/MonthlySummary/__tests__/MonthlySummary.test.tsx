@@ -72,8 +72,8 @@ describe('MonthlySummary', () => {
       />
     );
     
-    expect(screen.container.querySelector('.monthly-summary--loading')).toBeInTheDocument();
-    expect(screen.container.querySelector('.monthly-summary__skeleton')).toBeInTheDocument();
+    expect(document.querySelector('.monthly-summary--loading')).toBeInTheDocument();
+    expect(document.querySelector('.monthly-summary__skeleton')).toBeInTheDocument();
   });
 
   it('displays error state', () => {

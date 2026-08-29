@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './Sidebar.css';
 
 interface SidebarProps {
@@ -13,6 +13,20 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, onToggle }) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Show confirmation dialog
+    const confirmLogout = window.confirm('Are you sure you want to logout?');
+    
+    if (confirmLogout) {
+      // Clear all localStorage
+      localStorage.clear();
+      
+      // Navigate to login page
+      navigate('/login');
+    }
+  };
 
   const menuItems = [
     {
@@ -29,6 +43,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, onToggle }) => {
       path: '/categories',
       label: 'Categories',
       icon: '📁'
+    },
+    {
+      path: '/reports',
+      label: 'Reports',
+      icon: '📈'
     }
   ];
 
@@ -67,6 +86,18 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, onToggle }) => {
           ))}
         </ul>
       </nav>
+      
+      {/* Logout button */}
+      <div className="sidebar__logout">
+        <button 
+          className="sidebar__logout-button"
+          onClick={handleLogout}
+          aria-label="Logout"
+        >
+          <span className="sidebar__menu-icon">🚪</span>
+          {isOpen && <span className="sidebar__menu-text">Logout</span>}
+        </button>
+      </div>
     </div>
   );
 };
