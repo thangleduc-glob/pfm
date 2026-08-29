@@ -11,6 +11,7 @@ import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import { authRoutes } from '../../src/routes/auth';
 import { categoryRoutes } from '../../src/routes/categories';
+import { transactionRoutes } from '../../src/routes/transactions';
 import { logger } from '../../src/utils/logger';
 
 // Mock environment variables for testing
@@ -70,6 +71,7 @@ export async function setupTestApp() {
   // API routes
   app.use('/api/v1/auth', authRoutes);
   app.use('/api/v1/categories', categoryRoutes);
+  app.use('/api/v1/transactions', transactionRoutes);
 
   // Error handling middleware
   app.use((err: any, req: express.Request, res: express.Response, _next: express.NextFunction) => {
