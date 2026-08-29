@@ -7,7 +7,6 @@ import { Request, Response } from 'express';
 import { TransactionService } from '../services/transactionService';
 import { logger } from '../utils/logger';
 import {
-  createTransactionRequestSchema,
   updateTransactionRequestSchema,
   transactionFilterRequestSchema,
   transactionIdSchema,

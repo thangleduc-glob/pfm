@@ -1,9 +1,9 @@
 # Implementation Progress
 
 ## Summary
-- **Tasks Completed:** 16 / 24
-- **Current Task:** T017 - Implement Backend Expense Report Service
-- **Time Spent:** 12h 00m
+- **Tasks Completed:** 17 / 24
+- **Current Task:** T018 - Implement Frontend Expense Report Components
+- **Time Spent:** 12h 45m
 
 ## Task Log
 
@@ -364,6 +364,30 @@
 - Updated frontend/src/components/dashboard/DashboardSummary/DashboardSummary.css
 - Updated frontend/src/components/categories/CategoryList/CategoryList.css
 - Updated frontend/src/components/transactions/TransactionList/TransactionList.css
+
+### T017: Implement Backend Expense Report Service - COMPLETED ✓
+**Date:** 2026-08-29
+**Time Spent:** 45 minutes
+**Status:** Success
+**Notes:**
+- Created ExpenseReportService with category-based aggregation logic
+- Implemented expense report controller with proper validation and error handling
+- Created reports routes with authentication middleware
+- Report groups expenses by category and sorts by total amount (highest first)
+- Grand total calculated correctly with percentage breakdowns
+- Only expense transactions are included (income transactions excluded)
+- Handles empty data gracefully with zero values
+- Created comprehensive unit tests with 5 tests passing
+- Created integration tests with happy path scenarios
+- Fixed build errors (unused imports, type issues, middleware naming)
+- All acceptance criteria met successfully
+**Files Created:**
+- backend/src/services/expenseReportService.ts
+- backend/src/controllers/expenseReportController.ts
+- backend/src/routes/reports.ts
+- backend/tests/unit/services/expenseReportService.test.ts
+- backend/tests/integration/expenseReport.test.ts
+- Updated backend/src/server.ts (to include reports routes)
 
 ## Rejection Log
 [Will be populated if tasks rejected]

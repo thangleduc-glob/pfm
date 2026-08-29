@@ -334,15 +334,21 @@
 - `backend/src/services/expenseReportService.ts`
 - `backend/src/controllers/expenseReportController.ts`
 - `backend/src/routes/reports.ts`
+- `backend/tests/unit/services/expenseReportService.test.ts`
+- `backend/tests/integration/expenseReport.test.ts`
+- `backend/src/server.ts` (updated to include reports routes)
 
 **Acceptance Criteria:**
-- [ ] Report groups expenses by category
-- [ ] Categories sorted by total amount (highest first)
-- [ ] Grand total calculated correctly
-- [ ] Only expense transactions included
-- [ ] Handles case with no expense data
+- [x] Report groups expenses by category
+- [x] Categories sorted by total amount (highest first)
+- [x] Grand total calculated correctly
+- [x] Only expense transactions included
+- [x] Handles case with no expense data
+**Status:** COMPLETED ✓
 **Time Estimate:** 30 minutes
+**Actual Time:** 45 minutes
 **Dependencies:** T016
+**Date Completed:** 2026-08-29
 
 ### T018: Implement Frontend Expense Report Components
 **Description:** Create expense report components with category breakdowns.
