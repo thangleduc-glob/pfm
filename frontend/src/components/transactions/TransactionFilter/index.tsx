@@ -118,8 +118,8 @@ const TransactionFilter: React.FC<TransactionFilterProps> = ({
             disabled={isLoading}
           >
             <option value="all">All Types</option>
-            <option value="income">Income</option>
-            <option value="expense">Expense</option>
+            <option value="INCOME">Income</option>
+            <option value="EXPENSE">Expense</option>
           </select>
         </div>
 

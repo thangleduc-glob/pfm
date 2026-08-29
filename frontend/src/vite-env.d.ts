@@ -10,3 +10,8 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv
 }
+
+declare module '*.css' {
+  const classes: { readonly [key: string]: string };
+  export default classes;
+}

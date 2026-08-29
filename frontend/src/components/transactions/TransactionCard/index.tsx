@@ -28,8 +28,8 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
   onDelete,
   showActions = true,
 }) => {
-  const normalizedType = transaction.type.toLowerCase() as "income" | "expense";
-  const isIncome = normalizedType === "income";
+  const normalizedType = transaction.type.toLowerCase() as "INCOME" | "EXPENSE";
+  const isIncome = normalizedType === "INCOME";
   const amountClass = isIncome
     ? "transaction-card__amount--income"
     : "transaction-card__amount--expense";

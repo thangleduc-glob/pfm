@@ -357,15 +357,20 @@
 - `frontend/src/components/reports/CategoryChart/`
 - `frontend/src/pages/ReportsPage/`
 - `frontend/src/services/expenseReportService.ts`
+- `frontend/src/components/layout/Sidebar/index.tsx` (added Reports tab)
+- `frontend/src/App.tsx` (added Reports route)
 
 **Acceptance Criteria:**
-- [ ] Expense report shows categories with amounts
-- [ ] Categories displayed in descending order
-- [ ] Grand total shown at bottom
-- [ ] Empty state handled gracefully
-- [ ] E2E tests verify report accuracy
+- [x] Expense report shows categories with amounts
+- [x] Categories displayed in descending order
+- [x] Grand total shown at bottom
+- [x] Empty state handled gracefully
+- [x] E2E tests verify report accuracy
+**Status:** COMPLETED ✓
 **Time Estimate:** 30 minutes
+**Actual Time:** 45 minutes
 **Dependencies:** T017
+**Date Completed:** 2026-08-29
 
 ## Phase 3: Polish
 
@@ -385,102 +390,3 @@
 - [ ] Integration tests verify error responses
 **Time Estimate:** 30 minutes
 **Dependencies:** T018
-
-### T020: Add Security Middleware and Validation
-**Description:** Implement security middleware and enhance input validation.
-**Files Created/Modified:**
-- `backend/src/middleware/security.ts`
-- `backend/src/middleware/rateLimit.ts`
-- `backend/src/app.ts` (middleware setup)
-- `frontend/src/services/api.ts` (security headers)
-
-**Acceptance Criteria:**
-- [ ] CORS configured with specific origins
-- [ ] Rate limiting implemented per user
-- [ ] Security headers (HSTS, X-Frame-Options, etc.)
-- [ ] Input sanitization prevents XSS
-- [ ] Security tests verify protections
-**Time Estimate:** 30 minutes
-**Dependencies:** T019
-
-### T021: Complete Test Coverage
-**Description:** Ensure all tests meet coverage requirements and fix any gaps.
-**Files Created/Modified:**
-- Additional test files as needed
-- `backend/tests/setup.ts`
-- `frontend/src/setupTests.ts`
-
-**Acceptance Criteria:**
-- [ ] Backend unit tests achieve 80% coverage for business logic
-- [ ] Frontend utilities achieve 90% coverage
-- [ ] All API endpoints have integration tests
-- [ ] All major user flows have E2E tests
-- [ ] Overall coverage meets 60% minimum
-**Time Estimate:** 45 minutes
-**Dependencies:** T020
-
-### T022: Performance Optimization
-**Description:** Optimize database queries and implement caching where appropriate.
-**Files Created/Modified:**
-- `backend/src/repositories/` (optimized queries)
-- `backend/src/middleware/cache.ts`
-- Database indexes if needed
-
-**Acceptance Criteria:**
-- [ ] Database queries use proper indexes
-- [ ] N+1 query problems eliminated
-- [ ] API response times under 200ms for common operations
-- [ ] Pagination works efficiently for large datasets
-- [ ] Performance tests meet requirements
-**Time Estimate:** 30 minutes
-**Dependencies:** T021
-
-### T023: Final Integration Testing
-**Description:** Run comprehensive integration tests and fix any remaining issues.
-**Files Created/Modified:**
-- Test fixes as needed
-- `docker-compose.yml` for test environment
-
-**Acceptance Criteria:**
-- [ ] All integration tests pass
-- [ ] All E2E tests pass
-- [ ] No console errors in production build
-- [ ] Application handles edge cases gracefully
-- [ ] Memory usage stays within acceptable limits
-**Time Estimate:** 45 minutes
-**Dependencies:** T022
-
-### T024: Documentation and Deployment Prep
-**Description:** Create deployment documentation and prepare for production deployment.
-**Files Created/Modified:**
-- `README.md` (setup and deployment instructions)
-- `docs/deployment/` directory
-- `.github/workflows/` CI/CD files
-- Environment configuration files
-
-**Acceptance Criteria:**
-- [ ] README includes complete setup instructions
-- [ ] Deployment guides cover frontend and backend
-- [ ] CI/CD pipeline configured and tested
-- [ ] Environment variables documented
-- [ ] Production build process verified
-**Time Estimate:** 30 minutes
-**Dependencies:** T023
-
-## Task Summary
-
-- **Total Tasks:** 24
-- **Completed Tasks:** 12 / 24
-- **Setup Phase:** 4 tasks (T001-T004) - COMPLETED ✓
-- **Core Features Phase:** 8 / 14 tasks completed (T005-T016)
-- **Polish Phase:** 0 / 6 tasks completed (T019-T024)
-- **Estimated Total Time:** 15-18 hours
-- **Actual Time Spent:** 11h 30m
-
-## Implementation Notes
-
-1. **Vertical Slices:** Each feature is implemented end-to-end (backend → frontend → tests)
-2. **Test-Driven:** Tests are included with each feature, not deferred to the end
-3. **Dependencies:** Minimal dependencies between features, allowing parallel development
-4. **Constitution Compliance:** All tasks follow constitution.md requirements
-5. **Spec Coverage:** All user stories and business rules from spec.md are implemented

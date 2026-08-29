@@ -36,7 +36,7 @@ describe('Dashboard API Integration Tests', () => {
       password: 'TestPass123',
     });
     userId = user.user.id;
-    
+
     // Login to get auth token
     const loginResult = await authService.login({
       username: 'dashboardtest',
@@ -164,7 +164,7 @@ describe('Dashboard API Integration Tests', () => {
 
       expect(response.body).toHaveProperty('success', true);
       expect(response.body).toHaveProperty('data');
-      expect(response.body.data).toHaveProperty('income');
+      expect(response.body.data).toHaveProperty('INCOME');
 
       // Should be current month income only
       expect(response.body.data.income).toBe(5000);
