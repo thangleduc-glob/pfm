@@ -231,20 +231,61 @@ npm run dev
 ### Login/Register
 <img width="1371" height="780" alt="Login/Register" src="https://github.com/user-attachments/assets/ebe11690-2b97-4faf-ba5a-40d6a751d958" style="box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); border-radius: 8px;" />
 
+**Authentication Interface** 
+- Clean and modern login/register form with:
+- Secure password validation with strength requirements
+- Toggle between login and registration modes
+- Form validation with helpful error messages
+- Responsive design for all devices
+
 ### Dashboard
 <img width="1377" height="776" alt="Dashboard" src="https://github.com/user-attachments/assets/22a81ca7-3b32-46e4-b576-7db808a79b38" style="box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); border-radius: 8px;" />
+
+**Financial Overview Dashboard** 
+- Comprehensive view of your financial health featuring:
+- Monthly income vs expense comparison with visual charts
+- Total balance and transaction count metrics
+- Recent transactions list with quick actions
+- Interactive spending category breakdown
+- Quick navigation to all major features
 
 ### Transactions
 <img width="1372" height="781" alt="Transactions" src="https://github.com/user-attachments/assets/e61a156e-92c2-43a9-ae45-5dbe099507ee" style="box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); border-radius: 8px;" />
 
+**Transaction Management** 
+- Complete control over your financial transactions:
+- Add new income/expense transactions with detailed forms
+- Edit or delete existing transactions with confirmation
+- Advanced filtering by date, category, and type
+- Search functionality to find specific transactions quickly
+- Sortable columns for better organization
+- Visual indicators for income (green) vs expenses (red)
+
 ### Categories
 <img width="1373" height="780" alt="Categories" src="https://github.com/user-attachments/assets/feca4200-b8b3-465f-bd7d-330c195b2fb5" style="box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); border-radius: 8px;" />
+
+**Category Management** 
+- Organize your finances with custom categories:
+- Create unlimited income and expense categories
+- Color-coded category types for easy identification
+- Edit category names and types as needed
+- Delete unused categories with safety checks
+- View transaction count per category
+- Clean, intuitive interface for quick category management
 
 ### Reports
 <img width="1370" height="884" alt="Reports" src="https://github.com/user-attachments/assets/86ec3576-7758-421d-a873-b6eec89a7b15" style="box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); border-radius: 8px;" />
 
+**Expense Reports & Analytics** 
+- Deep insights into your spending patterns:
+- Category-wise expense breakdown with percentages
+- Interactive bar charts for visual analysis
+- Filter reports by date range for specific periods
+- Grand total calculations with detailed summaries
+- Export functionality for external analysis
+- Responsive charts that adapt to different screen sizes
+- Clear visualization of where your money goes each month
+
 ---
 
-## 🤖 Powered by CODA
-
-This project demonstrates the power of AI-assisted development through CODA, showcasing how spec-driven development can produce high-quality, well-documented software with unprecedented efficiency and consistency.
+*Built with ❤️ using modern web technologies*
