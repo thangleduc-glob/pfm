@@ -1,68 +1,9 @@
 /* CategoriesPage Component Styles */
 
 .categories-page {
-  min-height: 100vh;
-  background-color: #f8fafc;
-  padding: 2rem 0;
-}
-
-.categories-page__container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-.categories-page__header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.categories-page__title {
-  margin: 0 0 0.75rem 0;
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #1a202c;
-  line-height: 1.2;
-}
-
-.categories-page__description {
-  margin: 0;
-  font-size: 1.125rem;
-  color: #64748b;
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.6;
+  /* Layout handled by MainLayout */
 }
 
 .categories-page__content {
-  background-color: transparent;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-  .categories-page {
-    padding: 1rem 0;
-  }
-  
-  .categories-page__container {
-    padding: 0 0.75rem;
-  }
-  
-  .categories-page__title {
-    font-size: 2rem;
-  }
-  
-  .categories-page__description {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .categories-page__title {
-    font-size: 1.75rem;
-  }
-  
-  .categories-page__description {
-    font-size: 0.875rem;
-  }
+  /* Content wrapper handled by MainLayout page-content */
 }

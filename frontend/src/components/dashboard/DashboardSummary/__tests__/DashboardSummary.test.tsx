@@ -36,8 +36,6 @@ vi.mock('../MonthlySummary', () => {
   };
 });
 
-import DashboardService from '../../../services/dashboardService';
-
 describe('DashboardSummary', () => {
   beforeEach(() => {
     jest.clearAllMocks();

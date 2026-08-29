@@ -3,10 +3,10 @@
  * Displays a single transaction with details and actions
  */
 
-import React from 'react';
-import { Transaction } from '../../../types/transaction';
-import { formatCurrency, formatDate } from '../../../utils/formatting';
-import './TransactionCard.css';
+import React from "react";
+import { Transaction } from "../../../types/transaction";
+import { formatCurrency, formatDate } from "../../../utils/formatting";
+import "./TransactionCard.css";
 
 interface TransactionCardProps {
   transaction: Transaction;
@@ -28,9 +28,14 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
   onDelete,
   showActions = true,
 }) => {
-  const isIncome = transaction.type === 'INCOME';
-  const amountClass = isIncome ? 'transaction-card__amount--income' : 'transaction-card__amount--expense';
-  const typeIcon = isIncome ? '↑' : '↓';
+  const normalizedType = transaction.type.toLowerCase() as "income" | "expense";
+  const isIncome = normalizedType === "income";
+  const amountClass = isIncome
+    ? "transaction-card__amount--income"
+    : "transaction-card__amount--expense";
+  const typeIcon = isIncome ? "↑" : "↓";
+  const label =
+    normalizedType.charAt(0).toUpperCase() + normalizedType.slice(1);
 
   /**
    * Handle edit button click
@@ -43,7 +48,11 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
    * Handle delete button click
    */
   const handleDelete = () => {
-    if (window.confirm(`Are you sure you want to delete this ${transaction.type} of ${formatCurrency(transaction.amount)}?`)) {
+    if (
+      window.confirm(
+        `Are you sure you want to delete this ${transaction.type} of ${formatCurrency(transaction.amount)}?`,
+      )
+    ) {
       onDelete?.(transaction);
     }
   };
@@ -55,9 +64,7 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
           <span className={`transaction-card__type-icon ${amountClass}`}>
             {typeIcon}
           </span>
-          <span className="transaction-card__type-text">
-            {transaction.type.charAt(0).toUpperCase() + transaction.type.slice(1)}
-          </span>
+          <span className="transaction-card__type-text">{label}</span>
         </div>
         <div className={`transaction-card__amount ${amountClass}`}>
           {formatCurrency(transaction.amount)}

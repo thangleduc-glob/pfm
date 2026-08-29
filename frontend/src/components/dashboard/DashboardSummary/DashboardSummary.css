@@ -5,65 +5,47 @@
   padding: 24px;
 }
 
-.dashboard-summary__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 32px;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.dashboard-summary__title {
-  font-size: 2rem;
-  color: #1f2937;
-  margin: 0;
-  font-weight: 700;
-}
-
-.dashboard-summary__refresh {
-  background: #3b82f6;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.dashboard-summary__refresh:hover:not(:disabled) {
-  background: #2563eb;
-  transform: translateY(-1px);
-}
-
-.dashboard-summary__refresh:disabled {
-  background: #9ca3af;
-  cursor: not-allowed;
-  transform: none;
-}
-
 .dashboard-summary__content {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
   gap: 24px;
-  align-items: start;
+  align-items: stretch;
 }
 
-.dashboard-summary__balance-section {
-  min-height: 200px;
-}
-
+.dashboard-summary__balance-section,
 .dashboard-summary__monthly-section {
   min-height: 200px;
 }
 
-/* Responsive design */
+.dashboard-summary__refresh {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.2);
+}
+
+.dashboard-summary__refresh:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 22px rgba(37, 99, 235, 0.26);
+}
+
+.dashboard-summary__refresh:disabled {
+  background: #9ca3af;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
 @media (max-width: 1024px) {
+  .dashboard-summary {
+    padding: 16px;
+  }
+
   .dashboard-summary__content {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -71,19 +53,6 @@
 }
 
 @media (max-width: 640px) {
-  .dashboard-summary {
-    padding: 16px;
-  }
-  
-  .dashboard-summary__header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .dashboard-summary__title {
-    font-size: 1.5rem;
-  }
-  
   .dashboard-summary__refresh {
     width: 100%;
     justify-content: center;

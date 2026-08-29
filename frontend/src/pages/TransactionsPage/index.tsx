@@ -43,27 +43,12 @@ const TransactionsPage: React.FC = () => {
   return (
     <ProtectedRoute>
       <div className="transactions-page" data-testid="transactions-page">
-        <div className="transactions-page__container">
-          <header className="transactions-page__header">
-            <h1 className="transactions-page__title">Transaction Management</h1>
-            <p className="transactions-page__subtitle">
-              Manage your income and expense transactions
-            </p>
-          </header>
-
-          <main className="transactions-page__main">
-            <TransactionList
-              onEditTransaction={handleEditTransaction}
-              onDeleteTransaction={handleDeleteTransaction}
-              onCreateTransaction={handleCreateTransaction}
-            />
-          </main>
-
-          <footer className="transactions-page__footer">
-            <p className="transactions-page__footer-text">
-              Tip: Use filters to quickly find specific transactions or view transactions by category.
-            </p>
-          </footer>
+        <div className="page-content">
+          <TransactionList
+            onEditTransaction={handleEditTransaction}
+            onDeleteTransaction={handleDeleteTransaction}
+            onCreateTransaction={handleCreateTransaction}
+          />
         </div>
       </div>
     </ProtectedRoute>

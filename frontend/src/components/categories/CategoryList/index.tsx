@@ -8,6 +8,7 @@ import { Category, CategoryWithCount } from "../../../types/category";
 import CategoryCard from "../CategoryCard";
 import CategoryForm from "../CategoryForm";
 import CategoryService from "../../../services/categoryService";
+import PageHeader from "../../common/PageHeader";
 import "./CategoryList.css";
 
 interface CategoryListProps {
@@ -213,19 +214,16 @@ const CategoryList: React.FC<CategoryListProps> = ({
 
   return (
     <div className="category-list" data-testid="category-list">
-      <div className="category-list__header">
-        <h2 className="category-list__title">Categories</h2>
-        <button
-          className="category-list__add-button"
-          onClick={() => {
-            setEditingCategory(null);
-            setShowForm(true);
-          }}
-          data-testid="add-category-button"
-        >
-          Add New Category
-        </button>
-      </div>
+      <PageHeader
+        title="Categories"
+        actionLabel="Add New Category"
+        onAction={() => {
+          setEditingCategory(null);
+          setShowForm(true);
+        }}
+        actionClassName="category-list__add-button"
+        titleClassName="category-list__title"
+      />
 
       {error && (
         <div className="category-list__error" data-testid="error-message">

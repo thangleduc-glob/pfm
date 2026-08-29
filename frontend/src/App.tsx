@@ -12,6 +12,7 @@ import DashboardPage from './pages/DashboardPage';
 import CategoriesPage from './pages/CategoriesPage';
 import TransactionsPage from './pages/TransactionsPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+import MainLayout from './components/layout/MainLayout';
 
 function App() {
   return (
@@ -28,7 +29,9 @@ function App() {
               path="/dashboard"
               element={
                 <ProtectedRoute>
-                  <DashboardPage />
+                  <MainLayout>
+                    <DashboardPage />
+                  </MainLayout>
                 </ProtectedRoute>
               }
             />
@@ -36,7 +39,9 @@ function App() {
               path="/categories"
               element={
                 <ProtectedRoute>
-                  <CategoriesPage />
+                  <MainLayout>
+                    <CategoriesPage />
+                  </MainLayout>
                 </ProtectedRoute>
               }
             />
@@ -44,7 +49,9 @@ function App() {
               path="/transactions"
               element={
                 <ProtectedRoute>
-                  <TransactionsPage />
+                  <MainLayout>
+                    <TransactionsPage />
+                  </MainLayout>
                 </ProtectedRoute>
               }
             />

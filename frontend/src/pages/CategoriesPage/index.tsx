@@ -38,21 +38,12 @@ const CategoriesPage: React.FC = () => {
 
   return (
     <div className="categories-page" data-testid="categories-page">
-      <div className="categories-page__container">
-        <div className="categories-page__header">
-          <h1 className="categories-page__title">Category Management</h1>
-          <p className="categories-page__description">
-            Create and manage your income and expense categories to organize your transactions effectively.
-          </p>
-        </div>
-
-        <div className="categories-page__content">
-          <CategoryList
-            onEditCategory={handleEditCategory}
-            onDeleteCategory={handleDeleteCategory}
-            onCreateCategory={handleCreateCategory}
-          />
-        </div>
+      <div className="page-content">
+        <CategoryList
+          onEditCategory={handleEditCategory}
+          onDeleteCategory={handleDeleteCategory}
+          onCreateCategory={handleCreateCategory}
+        />
       </div>
     </div>
   );

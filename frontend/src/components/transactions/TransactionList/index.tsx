@@ -3,13 +3,17 @@
  * Displays a list of transactions with filtering, pagination, and actions
  */
 
-import React, { useState, useEffect } from 'react';
-import { Transaction, TransactionFilters, TransactionListResponse } from '../../../types/transaction';
-import TransactionCard from '../TransactionCard';
-import TransactionForm from '../TransactionForm';
-import TransactionFilter from '../TransactionFilter';
-import TransactionService from '../../../services/transactionService';
-import './TransactionList.css';
+import React, { useState, useEffect } from "react";
+import {
+  Transaction,
+  TransactionFilters,
+} from "../../../types/transaction";
+import TransactionCard from "../TransactionCard";
+import TransactionForm from "../TransactionForm";
+import TransactionFilter from "../TransactionFilter";
+import TransactionService from "../../../services/transactionService";
+import PageHeader from "../../common/PageHeader";
+import "./TransactionList.css";
 
 interface TransactionListProps {
   onEditTransaction?: (transaction: Transaction) => void;
@@ -32,10 +36,11 @@ const TransactionList: React.FC<TransactionListProps> = ({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
-  const [editingTransaction, setEditingTransaction] = useState<Transaction | null>(null);
+  const [editingTransaction, setEditingTransaction] =
+    useState<Transaction | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [filters, setFilters] = useState<TransactionFilters>({
-    type: 'all',
+    type: "all",
   });
   const [pagination, setPagination] = useState({
     page: 1,
@@ -60,18 +65,18 @@ const TransactionList: React.FC<TransactionListProps> = ({
       const response = await TransactionService.getTransactions(
         pagination.page,
         pagination.limit,
-        filters
+        filters,
       );
 
       setTransactions(response.transactions);
-      setPagination(prev => ({
+      setPagination((prev) => ({
         ...prev,
         total: response.total,
         totalPages: Math.ceil(response.total / response.limit),
       }));
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : 'Failed to load transactions',
+        err instanceof Error ? err.message : "Failed to load transactions",
       );
     } finally {
       setLoading(false);
@@ -90,7 +95,7 @@ const TransactionList: React.FC<TransactionListProps> = ({
       onCreateTransaction?.();
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : 'Failed to create transaction',
+        err instanceof Error ? err.message : "Failed to create transaction",
       );
     } finally {
       setSubmitting(false);
@@ -111,7 +116,7 @@ const TransactionList: React.FC<TransactionListProps> = ({
       setShowForm(false);
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : 'Failed to update transaction',
+        err instanceof Error ? err.message : "Failed to update transaction",
       );
     } finally {
       setSubmitting(false);
@@ -138,7 +143,7 @@ const TransactionList: React.FC<TransactionListProps> = ({
       onDeleteTransaction?.(transaction);
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : 'Failed to delete transaction',
+        err instanceof Error ? err.message : "Failed to delete transaction",
       );
     } finally {
       setSubmitting(false);
@@ -169,14 +174,14 @@ const TransactionList: React.FC<TransactionListProps> = ({
    */
   const handleFiltersChange = (newFilters: TransactionFilters) => {
     setFilters(newFilters);
-    setPagination(prev => ({ ...prev, page: 1 })); // Reset to first page
+    setPagination((prev) => ({ ...prev, page: 1 })); // Reset to first page
   };
 
   /**
    * Handle pagination
    */
   const handlePageChange = (newPage: number) => {
-    setPagination(prev => ({ ...prev, page: newPage }));
+    setPagination((prev) => ({ ...prev, page: newPage }));
   };
 
   /**
@@ -203,19 +208,16 @@ const TransactionList: React.FC<TransactionListProps> = ({
 
   return (
     <div className="transaction-list" data-testid="transaction-list">
-      <div className="transaction-list__header">
-        <h2 className="transaction-list__title">Transactions</h2>
-        <button
-          className="transaction-list__add-button"
-          onClick={() => {
-            setEditingTransaction(null);
-            setShowForm(true);
-          }}
-          data-testid="add-transaction-button"
-        >
-          Add Transaction
-        </button>
-      </div>
+      <PageHeader
+        title="Transactions"
+        actionLabel="Add Transaction"
+        onAction={() => {
+          setEditingTransaction(null);
+          setShowForm(true);
+        }}
+        actionClassName="transaction-list__add-button"
+        titleClassName="transaction-list__title"
+      />
 
       {error && (
         <div className="transaction-list__error" data-testid="error-message">
@@ -250,16 +252,21 @@ const TransactionList: React.FC<TransactionListProps> = ({
         {transactions.length === 0 ? (
           <div className="transaction-list__empty" data-testid="empty-state">
             <p>
-              {Object.keys(filters).some(key => filters[key as keyof TransactionFilters] !== undefined && filters[key as keyof TransactionFilters] !== 'all')
-                ? 'No transactions found matching your filters.'
-                : 'No transactions found. Add your first transaction to get started!'}
+              {Object.keys(filters).some(
+                (key) =>
+                  filters[key as keyof TransactionFilters] !== undefined &&
+                  filters[key as keyof TransactionFilters] !== "all",
+              )
+                ? "No transactions found matching your filters."
+                : "No transactions found. Add your first transaction to get started!"}
             </p>
           </div>
         ) : (
           <>
             <div className="transaction-list__summary">
               <span className="transaction-list__summary-text">
-                Showing {paginationInfo.start} to {paginationInfo.end} of {pagination.total} transactions
+                Showing {paginationInfo.start} to {paginationInfo.end} of{" "}
+                {pagination.total} transactions
               </span>
             </div>
 
@@ -292,7 +299,9 @@ const TransactionList: React.FC<TransactionListProps> = ({
                 <button
                   className="transaction-list__pagination-button"
                   onClick={() => handlePageChange(pagination.page + 1)}
-                  disabled={pagination.page === pagination.totalPages || loading}
+                  disabled={
+                    pagination.page === pagination.totalPages || loading
+                  }
                   data-testid="next-page"
                 >
                   Next

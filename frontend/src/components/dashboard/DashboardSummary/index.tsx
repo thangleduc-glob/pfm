@@ -8,6 +8,7 @@ import { DashboardData, DashboardSummaryProps } from "../../../types/dashboard";
 import DashboardService from "../../../services/dashboardService";
 import BalanceCard from "../BalanceCard";
 import MonthlySummary from "../MonthlySummary";
+import PageHeader from "../../common/PageHeader";
 import "./DashboardSummary.css";
 
 /**
@@ -78,17 +79,14 @@ const DashboardSummary: React.FC<DashboardSummaryProps> = ({
 
   return (
     <div className="dashboard-summary">
-      <div className="dashboard-summary__header">
-        <h1 className="dashboard-summary__title">Financial Dashboard</h1>
-        <button
-          className="dashboard-summary__refresh"
-          onClick={handleRefresh}
-          disabled={loading}
-          aria-label="Refresh dashboard data"
-        >
-          {loading ? "Refreshing..." : "Refresh"}
-        </button>
-      </div>
+      <PageHeader
+        title="Dashboard"
+        actionLabel={loading ? "Refreshing..." : "Refresh"}
+        onAction={handleRefresh}
+        actionDisabled={loading}
+        actionClassName="dashboard-summary__refresh"
+        titleClassName="dashboard-summary__title"
+      />
 
       <div className="dashboard-summary__content">
         <div className="dashboard-summary__balance-section">
