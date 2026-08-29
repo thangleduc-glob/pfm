@@ -10,6 +10,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import DashboardPage from './pages/DashboardPage';
 import CategoriesPage from './pages/CategoriesPage';
+import TransactionsPage from './pages/TransactionsPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
 function App() {
@@ -36,6 +37,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <CategoriesPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/transactions"
+              element={
+                <ProtectedRoute>
+                  <TransactionsPage />
                 </ProtectedRoute>
               }
             />
