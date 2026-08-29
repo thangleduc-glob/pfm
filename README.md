@@ -288,4 +288,13 @@ npm run dev
 
 ---
 
+## 📞 Contact
+
+**Author:** Thang Le Duc  
+**Email:** thang.leduc@globant.com
+
+If you have any questions or feedback, please feel free to reach out.
+
+---
+
 *Built with ❤️ using modern web technologies*
